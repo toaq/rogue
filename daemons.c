@@ -84,7 +84,7 @@ void
 unconfuse()
 {
     player.t_flags &= ~ISHUH;
-    msg("you feel less %s now", choose_str("trippy", "confused"));
+    msg("Shaı %s súq da.", choose_str("saıbıao", "bıao"));
 }
 
 /*
@@ -115,8 +115,8 @@ sight()
 	player.t_flags &= ~ISBLIND;
 	if (!(proom->r_flags & ISGONE))
 	    enter_room(&hero);
-	msg(choose_str("far out!  Everything is all cosmic again",
-		       "the veil of darkness lifts"));
+	msg(choose_str("Obe!  Rıu ruajua tu raı da.",
+		       "Rıu deq kaqgaı súq da."));
     }
 }
 
@@ -128,7 +128,7 @@ void
 nohaste()
 {
     player.t_flags &= ~ISHASTE;
-    msg("you feel yourself slowing down");
+    msg("Gaı súq dîa deq suaı súq da.");
 }
 
 /*
@@ -153,9 +153,8 @@ stomach()
 	no_command += rnd(8) + 4;
 	hungry_state = 3;
 	if (!terse)
-	    addmsg(choose_str("the munchies overpower your motor capabilities.  ",
-			      "you feel too weak from lack of food.  "));
-	msg(choose_str("You freak out", "You faint"));
+	    addmsg("Cabıaq chûqkuaı súq cy rûe súqbo tuaı da.  ");
+	msg("Sho sısıa súq da.");
     }
     else
     {
@@ -165,17 +164,12 @@ stomach()
 	if (food_left < MORETIME && oldfood >= MORETIME)
 	{
 	    hungry_state = 2;
-	    msg(choose_str("the munchies are interfering with your motor capabilites",
-			   "you are starting to feel weak"));
+	    msg("Chufaq ceo tuaırue súq da.");
 	}
 	else if (food_left < 2 * MORETIME && oldfood >= 2 * MORETIME)
 	{
 	    hungry_state = 1;
-	    if (terse)
-		msg(choose_str("getting the munchies", "getting hungry"));
-	    else
-		msg(choose_str("you are getting the munchies",
-			       "you are starting to get hungry"));
+	    msg("Chufaq ceo chuqkuaı súq da.");
 	}
     }
     if (hungry_state != orig_hungry) { 
@@ -231,7 +225,7 @@ come_down()
 	    standend();
 	}
     }
-    msg("Everything looks SO boring now.");
+    msg("Rıu JAQ foıca tu kaq da.");
 }
 
 /*
@@ -290,6 +284,5 @@ void
 land()
 {
     player.t_flags &= ~ISLEVIT;
-    msg(choose_str("bummer!  You've hit the ground",
-		   "you float gently to the ground"));
+    msg("Nhea shua súq déaq da.");
 }

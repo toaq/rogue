@@ -300,7 +300,7 @@ over:
 			fp = &flat(delta.y, delta.x);
                         addmsg("Tıchıaqsho súq ");
 			if (chat(delta.y, delta.x) != TRAP)
-			    msg("sia cheychuo da.");
+			    msg("sıa cheychuo da.");
 			else if (on(player, ISHALU))
 			    msg("sa %s da.", tr_name[rnd(NTRAPS)]);
 			else {
@@ -744,7 +744,7 @@ norm:
 	    if (*guess != NULL)
 		elsewise = *guess;
 	when FOOD:
-	    msg("Bu kıu choadoa ní da.");
+	    msg("Bu kıu chuadoa ní da.");
 	    return;
 	otherwise:
 	    guess = &obj->o_label;

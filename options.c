@@ -337,18 +337,18 @@ get_inv_t(void *vp, WINDOW *win)
 	wrefresh(win);
 	switch (readchar())
 	{
-	    case 'o':
-	    case 'O':
+	    case 'g':
+	    case 'G':
 		*ip = INV_OVER;
 		op_bad = FALSE;
 		break;
-	    case 's':
-	    case 'S':
+	    case 'r':
+	    case 'R':
 		*ip = INV_SLOW;
 		op_bad = FALSE;
 		break;
-	    case 'c':
-	    case 'C':
+	    case 'p':
+	    case 'P':
 		*ip = INV_CLEAR;
 		op_bad = FALSE;
 		break;
@@ -362,7 +362,7 @@ get_inv_t(void *vp, WINDOW *win)
 		return MINUS;
 	    default:
 		wmove(win, oy, ox + 15);
-		waddstr(win, "(O, S, or C)");
+		waddstr(win, "(G ro R ro P)");
 	}
     }
     mvwprintw(win, oy, ox, "%s\n", inv_t_name[*ip]);

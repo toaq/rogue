@@ -14,7 +14,7 @@
  * msg:
  *	Display a message at the top of the screen.
  */
-#define MAXMSG	(NUMCOLS - sizeof "--More--")
+#define MAXMSG	(NUMCOLS - sizeof "--Sıe--")
 
 static char msgbuf[2*MAXMSG+1];
 static int newpos = 0;
@@ -74,7 +74,7 @@ endmsg()
     if (mpos)
     {
 	look(FALSE);
-	mvaddstr(0, mpos, "--More--");
+	mvaddstr(0, mpos, "--Sıe--");
 	refresh();
 	if (!msg_esc)
 	    wait_for(' ');
@@ -181,7 +181,7 @@ status()
     static int s_exp = 0;
     static char *state_name[] =
     {
-	"", "Hungry", "Weak", "Faint"
+	"", "Chuqkuaı", "Rue", "Sısıa"
     };
 
     /*
@@ -220,7 +220,7 @@ status()
     if (stat_msg)
     {
 	move(0, 0);
-        msg("Level: %d  Gold: %-5d  Hp: %*d(%*d)  Str: %2d(%d)  Arm: %-2d  Exp: %d/%ld  %s",
+        msg("Shoane: %d  Nuaı: %-5d  Mıe: %*d(%*d)  Caı: %2d(%d)  Leoq: %-2d  Joe: %d/%ld  %s",
 	    level, purse, hpwidth, pstats.s_hpt, hpwidth, max_hp, pstats.s_str,
 	    max_stats.s_str, 10 - s_arm, pstats.s_lvl, pstats.s_exp,
 	    state_name[hungry_state]);
@@ -229,7 +229,7 @@ status()
     {
 	move(STATLINE, 0);
                 
-        printw("Level: %d  Gold: %-5d  Hp: %*d(%*d)  Str: %2d(%d)  Arm: %-2d  Exp: %d/%d  %s",
+        printw("Shoane: %d  Nuaı: %-5d  Mıe: %*d(%*d)  Caı: %2d(%d)  Leoq: %-2d  Joe: %d/%d  %s",
 	    level, purse, hpwidth, pstats.s_hpt, hpwidth, max_hp, pstats.s_str,
 	    max_stats.s_str, 10 - s_arm, pstats.s_lvl, pstats.s_exp,
 	    state_name[hungry_state]);
