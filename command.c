@@ -89,7 +89,7 @@ command()
 	    if (--no_command == 0)
 	    {
 		player.t_flags |= ISRUN;
-		msg("you can move again");
+		msg("Rıu deq duy súq da.");
 	    }
 	}
 	else
@@ -169,12 +169,7 @@ over:
 			    pick_up((char)obj->o_type);
 		    }
 		    else {
-			if (!terse)
-			    addmsg("there is ");
-			addmsg("nothing here");
-                        if (!terse)
-                            addmsg(" to pick up");
-                        endmsg();
+				msg("Kıu heaqsho sıa nıjuı da.");
 		    }
 		}
 		when '!': shell();
@@ -246,7 +241,7 @@ over:
 		when 'a':
 		    if (last_comm == '\0')
 		    {
-			msg("you haven't typed a command yet");
+			msg("Haı koe súq sıa caqtoaı da.");
 			after = FALSE;
 		    }
 		    else
@@ -291,7 +286,7 @@ over:
 		    wrefresh(curscr);
 		when 'v':
 		    after = FALSE;
-		    msg("version %s. (mctesq was here)", release);
+		    msg("Bashoq mí %s da.", release);
 		when 'S': 
 		    after = FALSE;
 		    save_game();
@@ -303,14 +298,13 @@ over:
 			delta.y += hero.y;
 			delta.x += hero.x;
 			fp = &flat(delta.y, delta.x);
-                        if (!terse)
-                            addmsg("You have found ");
+                        addmsg("Tıchıaqsho súq ");
 			if (chat(delta.y, delta.x) != TRAP)
-			    msg("no trap there");
+			    msg("sia cheychuo da.");
 			else if (on(player, ISHALU))
-			    msg(tr_name[rnd(NTRAPS)]);
+			    msg("sa %s da.", tr_name[rnd(NTRAPS)]);
 			else {
-			    msg(tr_name[*fp & F_TMASK]);
+			    msg("sa %s da.", tr_name[*fp & F_TMASK]);
 			    *fp |= F_SEEN;
 			}
 		    }
@@ -321,7 +315,7 @@ over:
 		    {
 			wizard = FALSE;
 			turn_see(TRUE);
-			msg("not wizard any more");
+			msg("Shaı majıpoq súq ka.");
 		    }
 		    else
 		    {
@@ -330,10 +324,10 @@ over:
 			{
 			    noscore = TRUE;
 			    turn_see(FALSE);
-			    msg("you are suddenly as smart as Ken Arnold in dungeon #%d", dnum);
+			    msg("Sho nejeq moıjoe súq mí Ken Arnold tì dóqjoq kö #%d da.", dnum);
 			}
 			else
-			    msg("sorry");
+			    msg("Kuaq sheo ka.");
 		    }
 #endif
 		when ESCAPE:	/* Escape */
@@ -351,13 +345,11 @@ over:
 			countch = dir_ch;
 			goto over;
 		    }
-		when ')': current(cur_weapon, "wielding", NULL);
-		when ']': current(cur_armor, "wearing", NULL);
+		when ')': current(cur_weapon, "jıaı", NULL);
+		when ']': current(cur_armor, "geı", NULL);
 		when '=':
-		    current(cur_ring[LEFT], "wearing",
-					    terse ? "(L)" : "on left hand");
-		    current(cur_ring[RIGHT], "wearing",
-					    terse ? "(R)" : "on right hand");
+		    current(cur_ring[LEFT], "geı", "súqbo lıomuq");
+		    current(cur_ring[RIGHT], "geı", "súqbo sıaqmuq");
 		when '@':
 		    stat_msg = TRUE;
 		    status();
@@ -377,7 +369,7 @@ over:
 			when CTRL('A'): level--; new_level();
 			when CTRL('F'): show_map();
 			when CTRL('T'): teleport();
-			when CTRL('E'): msg("food left: %d", food_left);
+			when CTRL('E'): msg("food_left: %d", food_left);
 			when CTRL('C'): add_pass();
 			when CTRL('X'): turn_see(on(player, SEEMONST));
 			when CTRL('~'):
@@ -462,7 +454,7 @@ illcom(int ch)
 {
     save_msg = FALSE;
     count = 0;
-    msg("illegal command '%s'", unctrl(ch));
+    msg("Laı shú '%s' sıa caqtoaı da.", unctrl(ch));
     save_msg = TRUE;
 }
 
@@ -498,7 +490,7 @@ search()
 			if (rnd(5 + probinc) != 0)
 			    break;
 			chat(y, x) = DOOR;
-                        msg("a secret door");
+                        msg("Shuı kıao da!");
 foundone:
 			found = TRUE;
 			*fp |= F_REAL;
@@ -509,12 +501,11 @@ foundone:
 			if (rnd(2 + probinc) != 0)
 			    break;
 			chat(y, x) = TRAP;
-			if (!terse)
-			    addmsg("you found ");
+			addmsg("Tıchıaqsho súq ");
 			if (on(player, ISHALU))
-			    msg(tr_name[rnd(NTRAPS)]);
+			    msg("sa %s da.", tr_name[rnd(NTRAPS)]);
 			else {
-			    msg(tr_name[*fp & F_TMASK]);
+			    msg("sa %s da.", tr_name[*fp & F_TMASK]);
 			    *fp |= F_SEEN;
 			}
 			goto foundone;
@@ -540,7 +531,7 @@ help()
     register struct h_list *strp;
     register char helpch;
     register int numprint, cnt;
-    msg("character you want help for (* for all): ");
+    msg("Shao súq râqjuoı jí hı laı moq? (* = tuq): ");
     helpch = readchar();
     mpos = 0;
     /*
@@ -558,7 +549,7 @@ help()
 		lower_msg = FALSE;
 		return;
 	    }
-	msg("unknown character '%s'", unctrl(helpch));
+	msg("Laı shú '%s' sıa caqtoaı da.", unctrl(helpch));
 	return;
     }
     /*
@@ -588,7 +579,7 @@ help()
 		break;
 	}
     wmove(hw, LINES - 1, 0);
-    waddstr(hw, "--Press space to continue--");
+    waddstr(hw, "--Toı súq shéalaıcıoq ba--");
     wrefresh(hw);
     wait_for(' ');
     clearok(stdscr, TRUE);
@@ -611,28 +602,28 @@ identify()
     register struct h_list *hp;
     register char *str;
     static struct h_list ident_list[] = {
-	{'|',		"wall of a room",		FALSE},
-	{'-',		"wall of a room",		FALSE},
-	{GOLD,		"gold",				FALSE},
-	{STAIRS,	"a staircase",			FALSE},
-	{DOOR,		"door",				FALSE},
-	{FLOOR,		"room floor",			FALSE},
-	{PLAYER,	"you",				FALSE},
-	{PASSAGE,	"passage",			FALSE},
-	{TRAP,		"trap",				FALSE},
-	{POTION,	"potion",			FALSE},
-	{SCROLL,	"scroll",			FALSE},
-	{FOOD,		"food",				FALSE},
-	{WEAPON,	"weapon",			FALSE},
-	{' ',		"solid rock",			FALSE},
-	{ARMOR,		"armor",			FALSE},
-	{AMULET,	"the Amulet of Yendor",		FALSE},
-	{RING,		"ring",				FALSE},
-	{STICK,		"wand or staff",		FALSE},
+	{'|',		"po kúa ga rea",		FALSE},
+	{'-',		"po kúa ga rea",		FALSE},
+	{GOLD,		"hoeloha",				FALSE},
+	{STAIRS,	"pueqmy",			FALSE},
+	{DOOR,		"kıao",				FALSE},
+	{FLOOR,		"deaq",			FALSE},
+	{PLAYER,	"suq",				FALSE},
+	{PASSAGE,	"kıaogıu",			FALSE},
+	{TRAP,		"cheychuo",				FALSE},
+	{POTION,	"majınao",			FALSE},
+	{SCROLL,	"majıpeq",			FALSE},
+	{FOOD,		"haq",				FALSE},
+	{WEAPON,	"hıaochuo",			FALSE},
+	{' ',		"pıo",			FALSE},
+	{ARMOR,		"leoqfuq",			FALSE},
+	{AMULET,	"pomı Jendory ga neqmy",		FALSE},
+	{RING,		"cheıbıu",				FALSE},
+	{STICK,		"majıbeaq",		FALSE},
 	{'\0'}
     };
 
-    msg("what do you want identified? ");
+    msg("Shao súq gâımuo súq hı moq? ");
     ch = readchar();
     mpos = 0;
     if (ch == ESCAPE)
@@ -644,7 +635,7 @@ identify()
 	str = monsters[ch-'A'].m_name;
     else
     {
-	str = "unknown character";
+	str = "duasıa laı";
 	for (hp = ident_list; hp->h_ch != '\0'; hp++)
 	    if (hp->h_ch == ch)
 	    {
@@ -652,7 +643,7 @@ identify()
 		break;
 	    }
     }
-    msg("'%s': %s", unctrl(ch), str);
+    msg("'%s': %s ní da.", unctrl(ch), str);
 }
 
 /*
@@ -665,7 +656,7 @@ d_level()
     if (levit_check())
 	return;
     if (chat(hero.y, hero.x) != STAIRS)
-	msg("I see no way down");
+	msg("Deq nıafa há sıa nıjuı da.");
     else
     {
 	level++;
@@ -690,12 +681,12 @@ u_level()
 	    if (level == 0)
 		total_winner();
 	    new_level();
-	    msg("you feel a wrenching sensation in your gut");
+	    msg("Caımoe súq sa feyjua dãqnuı da.");
 	}
 	else
-	    msg("your way is magically blocked");
+	    msg("Majıjeo bû sheı duy súq da.");
     else
-	msg("I see no way up");
+	msg("Deq gaofa há sıa nıjuı da.");
 }
 
 /*
@@ -708,7 +699,7 @@ levit_check()
 {
     if (!on(player, ISLEVIT))
 	return FALSE;
-    msg("You can't.  You're floating off the ground!");
+    msg("Boq rîolıaı súq da!");
     return TRUE;
 }
 
@@ -724,7 +715,7 @@ call()
     register char **guess, *elsewise = NULL;
     register bool *know;
 
-    obj = get_item("call", CALLABLE);
+    obj = get_item("chuadoa", CALLABLE);
     /*
      * Make certain that it is somethings that we want to wear
      */
@@ -753,7 +744,7 @@ norm:
 	    if (*guess != NULL)
 		elsewise = *guess;
 	when FOOD:
-	    msg("you can't call that anything");
+	    msg("Bu kıu choadoa ní da.");
 	    return;
 	otherwise:
 	    guess = &obj->o_label;
@@ -762,19 +753,14 @@ norm:
     }
     if (know != NULL && *know)
     {
-	msg("that has already been identified");
+	msg("Haı te gaımuo ní da.");
 	return;
     }
     if (elsewise != NULL && elsewise == *guess)
     {
-	if (!terse)
-	    addmsg("Was ");
-	msg("called \"%s\"", elsewise);
+	msg("Naı chua shú \"%s\" ní da.", elsewise);
     }
-    if (terse)
-	msg("call it: ");
-    else
-	msg("what do you want to call it? ");
+    msg("Shao súq nîq chua hı ní moq? ");
 
     if (elsewise == NULL)
 	strcpy(prbuf, "");
@@ -799,22 +785,13 @@ current(THING *cur, char *how, char *where)
     after = FALSE;
     if (cur != NULL)
     {
-	if (!terse)
-	    addmsg("you are %s (", how);
+	addmsg("Chufaq %s %s (", how, where ? where : "súq");
 	inv_describe = FALSE;
-	addmsg("%c) %s", cur->o_packch, inv_name(cur, TRUE));
+	msg("%c) %s da.", cur->o_packch, inv_name(cur, TRUE));
 	inv_describe = TRUE;
-	if (where)
-	    addmsg(" %s", where);
-	endmsg();
     }
     else
     {
-	if (!terse)
-	    addmsg("you are ");
-	addmsg("%s nothing", how);
-	if (where)
-	    addmsg(" %s", where);
-	endmsg();
+	msg("Chufaq %s %s sıa da.", how, where ? where : "súq");
     }
 }

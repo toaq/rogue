@@ -26,25 +26,20 @@ wear()
 	return;
     if (cur_armor != NULL)
     {
-	addmsg("you are already wearing some");
-	if (!terse)
-	    addmsg(".  You'll have to take it off first");
-	endmsg();
+	msg("Haı chufaq geı súq sa da.");
 	after = FALSE;
 	return;
     }
     if (obj->o_type != ARMOR)
     {
-	msg("you can't wear that");
+	msg("Bu kıu geı ní da.");
 	return;
     }
     waste_time();
     obj->o_flags |= ISKNOW;
     sp = inv_name(obj, TRUE);
     cur_armor = obj;
-    if (!terse)
-	addmsg("you are now ");
-    msg("wearing %s", sp);
+    msg("Ceo geı súq %s da.", sp);
 }
 
 /*
@@ -59,20 +54,13 @@ take_off()
     if ((obj = cur_armor) == NULL)
     {
 	after = FALSE;
-	if (terse)
-		msg("not wearing armor");
-	else
-		msg("you aren't wearing any armor");
+    msg("Chufaq geı súq sıa da.");
 	return;
     }
     if (!dropcheck(cur_armor))
 	return;
     cur_armor = NULL;
-    if (terse)
-	addmsg("was");
-    else
-	addmsg("you used to be");
-    msg(" wearing %c) %s", obj->o_packch, inv_name(obj, TRUE));
+    msg("Hıq geı súq %c) %s da.", obj->o_packch, inv_name(obj, TRUE));
 }
 
 /*
