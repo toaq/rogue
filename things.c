@@ -599,10 +599,10 @@ nothing(char type)
 	sp = &prbuf[strlen(prbuf)];
 	switch (type)
 	{
-	    case POTION: tystr = "potion";
-	    when SCROLL: tystr = "scroll";
-	    when RING: tystr = "ring";
-	    when STICK: tystr = "stick";
+	    case POTION: tystr = "majınao";
+	    when SCROLL: tystr = "majıpeq";
+	    when RING: tystr = "cheıbıu";
+	    when STICK: tystr = "majıbeaq";
 	}
 	sprintf(sp, " about any %ss", tystr);
     }

@@ -579,7 +579,7 @@ help()
 		break;
 	}
     wmove(hw, LINES - 1, 0);
-    waddstr(hw, "--Toı súq shéalaıcıoq ba--");
+    waddstr(hw, "--Hupa súq shéalaıcıoq ba--");
     wrefresh(hw);
     wait_for(' ');
     clearok(stdscr, TRUE);

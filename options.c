@@ -111,7 +111,7 @@ option()
      * Switch back to original screen
      */
     wmove(hw, LINES - 1, 0);
-    waddstr(hw, "--Press space to continue--");
+    waddstr(hw, "--Hupa súq shéalaıcıoq ba--");
     wrefresh(hw);
     wait_for(' ');
     clearok(curscr, TRUE);
@@ -138,7 +138,7 @@ pr_optname(OPTION *op)
 void
 put_bool(void *b)
 {
-    waddstr(hw, *(bool *) b ? "True" : "False");
+    waddstr(hw, *(bool *) b ? "jẽo" : "bũ");
 }
 
 /*
@@ -176,20 +176,20 @@ get_bool(void *vp, WINDOW *win)
 
     op_bad = TRUE;
     getyx(win, oy, ox);
-    waddstr(win, *bp ? "True" : "False");
+    waddstr(win, *bp ? "jẽo" : "bũ");
     while (op_bad)	
     {
 	wmove(win, oy, ox);
 	wrefresh(win);
 	switch (readchar())
 	{
-	    case 't':
-	    case 'T':
+	    case 'j':
+	    case 'J':
 		*bp = TRUE;
 		op_bad = FALSE;
 		break;
-	    case 'f':
-	    case 'F':
+	    case 'b':
+	    case 'B':
 		*bp = FALSE;
 		op_bad = FALSE;
 		break;
@@ -203,11 +203,11 @@ get_bool(void *vp, WINDOW *win)
 		return MINUS;
 	    default:
 		wmove(win, oy, ox + 10);
-		waddstr(win, "(T or F)");
+		waddstr(win, "(J ro B)");
 	}
     }
     wmove(win, oy, ox);
-    waddstr(win, *bp ? "True" : "False");
+    waddstr(win, *bp ? "jẽo" : "bũ");
     waddch(win, '\n');
     return NORM;
 }
