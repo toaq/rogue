@@ -13,6 +13,7 @@
 #include <signal.h>
 #include <time.h>
 #include <curses.h>
+#include <locale.h>
 #include "rogue.h"
 
 /*
@@ -25,6 +26,7 @@ main(int argc, char **argv, char **envp)
     char *env;
     int lowtime;
 
+    setlocale(LC_CTYPE, "");
     md_init();
 
 #ifdef MASTER
