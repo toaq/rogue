@@ -14,10 +14,16 @@
  * msg:
  *	Display a message at the top of the screen.
  */
-#define MAXMSG	(NUMCOLS - sizeof "--Sıe--")
+#define MAXMSG	(NUMCOLS - 7)
 
 static char msgbuf[2*MAXMSG+1];
 static int newpos = 0;
+
+size_t utf8_strlen(const char *s) {
+    size_t count = 0;
+    while (*s) count += (*s++ & 0xC0) != 0x80;
+    return count;
+}
 
 /* VARARGS1 */
 int
@@ -119,10 +125,10 @@ doadd(char *fmt, va_list args)
      * Do the printf into buf
      */
     vsprintf(buf, fmt, args);
-    if (strlen(buf) + newpos >= MAXMSG)
+    if (utf8_strlen(buf) + newpos >= MAXMSG)
         endmsg(); 
     strcat(msgbuf, buf);
-    newpos = (int) strlen(msgbuf);
+    newpos = (int) utf8_strlen(msgbuf);
 }
 
 /*

@@ -259,12 +259,12 @@ playit()
      * set up defaults for slow terminals
      */
 
-    if (baudrate() <= 1200)
+    /* if (baudrate() <= 1200)
     {
 	terse = TRUE;
 	jump = TRUE;
 	see_floor = FALSE;
-    }
+    } */
 
     if (md_hasclreol())
 	inv_type = INV_CLEAR;

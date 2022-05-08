@@ -42,32 +42,32 @@ inv_name(THING *obj, bool drop)
 	when SCROLL:
 	    if (obj->o_count == 1)
 	    {
-		strcpy(pb, "A scroll ");
-		pb = &prbuf[9];
+		strcpy(pb, "sa shı majıpeq ");
+		pb = &prbuf[strlen(prbuf)];
 	    }
 	    else
 	    {
-		sprintf(pb, "%d scrolls ", obj->o_count);
+		sprintf(pb, "sa %d majıpeq ", obj->o_count);
 		pb = &prbuf[strlen(prbuf)];
 	    }
 	    op = &scr_info[which];
 	    if (op->oi_know)
-		sprintf(pb, "of %s", op->oi_name);
+		sprintf(pb, "%s", op->oi_name);
 	    else if (op->oi_guess)
-		sprintf(pb, "called %s", op->oi_guess);
+		sprintf(pb, "chüa mó «%s» teo hóa", op->oi_guess);
 	    else
-		sprintf(pb, "titled '%s'", s_names[which]);
+		sprintf(pb, "käıte hóa mó «%s» teo", s_names[which]);
 	when FOOD:
 	    if (which == 1)
 		if (obj->o_count == 1)
-		    sprintf(pb, "A%s %s", vowelstr(fruit), fruit);
+		    sprintf(pb, "sa shı %s", vowelstr(fruit), fruit);
 		else
-		    sprintf(pb, "%d %ss", obj->o_count, fruit);
+		    sprintf(pb, "sa %d %s", obj->o_count, fruit);
 	    else
 		if (obj->o_count == 1)
-		    strcpy(pb, "Some food");
+		    strcpy(pb, "sa shı chuqny haq");
 		else
-		    sprintf(pb, "%d rations of food", obj->o_count);
+		    sprintf(pb, "sa %d chuqny haq", obj->o_count);
 	when WEAPON:
 	    sp = weap_info[which].oi_name;
 	    if (obj->o_count > 1)

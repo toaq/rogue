@@ -111,23 +111,28 @@ char *rainbow[] = {
 #define NCOLORS (sizeof rainbow / sizeof (char *))
 int cNCOLORS = NCOLORS;
 
+static char *gismu_mid[] = {"ct","cp","cf","ck","cm","cn","cl","cr","jd","jb","jv","jg","jm","jn","jl","jr","st","sp","sf","sk","sx","sm","sn","sl","sr","zd","zb","zv","zg","zm","zn","zl","zr","tc","ts","tp","tf","tk","tx","tm","tn","tl","tr","dj","dz","db","dv","dg","dm","dn","dl","dr","pc","ps","pt","pf","pk","px","pm","pn","pl","pr","bj","bz","bd","bv","bg","bm","bn","bl","br","fc","fs","ft","fp","fk","fx","fm","fn","fl","fr","vj","vz","vd","vb","vg","vm","vn","vl","vr","kc","ks","kt","kp","kf","km","kn","kl","kr","gj","gz","gd","gb","gv","gm","gn","gl","gr","xs","xt","xp","xf","xm","xn","xl","xr","mc","mj","ms","mt","md","mp","mb","mf","mv","mk","mg","mx","mn","ml","mr","nc","nj","ns","nz","nt","nd","np","nb","nf","nv","nk","ng","nx","nm","nl","nr","lc","lj","ls","lz","lt","ld","lp","lb","lf","lv","lk","lg","lx","lm","ln","lr","rc","rj","rs","rz","rt","rd","rp","rb","rf","rv","rk","rg","rx","rm","rn","rl"};
+static char *gismu_init[] = {"bl","br","cf","ck","cl","cm","cn","cp","cr","ct","dj","dr","dz","fl","fr","gl","gr","jb","jd","jg","jm","jv","kl","kr","ml","mr","pl","pr","sf","sk","sl","sm","sn","sp","sr","st","tc","tr","ts","vl","vr","xl","xr","zb","zd","zg","zm","zv"};
+
 static char *sylls[] = {
-    "a", "ab", "ag", "aks", "ala", "an", "app", "arg", "arze", "ash",
-    "bek", "bie", "bit", "bjor", "blu", "bot", "bu", "byt", "comp",
-    "con", "cos", "cre", "dalf", "dan", "den", "do", "e", "eep", "el",
-    "eng", "er", "ere", "erk", "esh", "evs", "fa", "fid", "fri", "fu",
-    "gan", "gar", "glen", "gop", "gre", "ha", "hyd", "i", "ing", "ip",
-    "ish", "it", "ite", "iv", "jo", "kho", "kli", "klis", "la", "lech",
-    "mar", "me", "mi", "mic", "mik", "mon", "mung", "mur", "nej",
-    "nelg", "nep", "ner", "nes", "nes", "nih", "nin", "o", "od", "ood",
-    "org", "orn", "ox", "oxy", "pay", "ple", "plu", "po", "pot",
-    "prok", "re", "rea", "rhov", "ri", "ro", "rog", "rok", "rol", "sa",
-    "san", "sat", "sef", "seh", "shu", "ski", "sna", "sne", "snik",
-    "sno", "so", "sol", "sri", "sta", "sun", "ta", "tab", "tem",
-    "ther", "ti", "tox", "trol", "tue", "turs", "u", "ulk", "um", "un",
-    "uni", "ur", "val", "viv", "vly", "vom", "wah", "wed", "werg",
-    "wex", "whon", "wun", "xo", "y", "yot", "yu", "zant", "zeb", "zim",
-    "zok", "zon", "zum",
+"by","bay","bey","boy","boeq","buao","bueq","bıaı","bıeq","bıoq",
+"pay","pey","pou","poy","pıq","peaq","peaı","poeq","puoı","pıeq","pıoq",
+"fy","foe","foy","fıq","feaq","foeq","fuao","fuoq","fuoı","fıao","fıaq","fıaı","fıoq",
+"nay","nou","neaı",
+"do","day","dey","dıy","deoq","doeq","duoq",
+"tay","tey","tıy",
+"zoe","zou","zoy","zoı","zuı","zeaq","zeaı","zeoq","zoaq","zoeq","zuao","zuaı","zueq","zuoq","zuoı","zıao","zıaq","zıaı","zıeq","zıoq",
+"cay","ceq","coy","cuq","cuoq","cuoı","cıaq","cıaı","cıeq",
+"sueq",
+"reaı",
+"lay","ley","luy","leaı","loeq","lıoq",
+"nhy","nhay","nhaı","nhea","nheq","nhey","nheı","nhoa","nhoy","nhue","nhuq","nhuı","nheaq","nheaı","nheoq","nhoaq","nhoeq","nhuao","nhuaq","nhuaı","nhueq","nhuoq","nhuoı",
+"jy","joeq",
+"chy","chay","choy","chuy","chıy","cheaı","choeq","chueq","chuoq","chıoq",
+"shay","shey","shoq","shoy","shuy","sheaı","sheoq","shoaq","shoeq","shuoq","shuoı","shıao","shıaı","shıeq","shıoq",
+"gy","gey","goq","goy","geaı","geoq","goeq","gueq","guoı","gıoq",
+"key","keoq","koeq",
+"hay","hoy","huy","hıq","hıy","heaı","hoeq","huoq",
 };
 
 STONE stones[] = {
@@ -258,6 +263,8 @@ init_colors()
  *	Generate the names of the various scrolls
  */
 #define MAXNAME	40	/* Max number of characters in a name */
+#define RANDOM_VOWEL "aeiou"[rnd(5)]
+#define RANDOM_CONSONANT "bcdfgjklmnprstvxz"[rnd(17)]
 
 void
 init_names()
@@ -269,19 +276,35 @@ init_names()
     for (i = 0; i < MAXSCROLLS; i++)
     {
 	cp = prbuf;
-	nwords = rnd(3) + 2;
+	nwords = rnd(2) + 1;
 	while (nwords--)
 	{
-	    nsyl = rnd(3) + 1;
-	    while (nsyl--)
-	    {
-		sp = sylls[rnd((sizeof sylls) / (sizeof (char *)))];
-		if (&cp[strlen(sp)] > &prbuf[MAXNAME])
-			break;
-		while (*sp)
-		    *cp++ = *sp++;
-	    }
-	    *cp++ = ' ';
+        // Make a random Lojban gismu.
+        if (rnd(2)) {
+            sp = gismu_init[rnd((sizeof gismu_init) / (sizeof (char*)))];
+            while (*sp) *cp++ = *sp++;
+            *cp++ = RANDOM_VOWEL;
+            *cp++ = RANDOM_CONSONANT;
+            *cp++ = RANDOM_VOWEL;
+            *cp++ = ' ';
+        } else {
+            *cp++ = RANDOM_CONSONANT;
+            *cp++ = RANDOM_VOWEL;
+            sp = gismu_mid[rnd((sizeof gismu_init) / (sizeof (char*)))];
+            while (*sp) *cp++ = *sp++;
+            *cp++ = RANDOM_VOWEL;
+            *cp++ = ' ';
+        }
+	    // nsyl = rnd(3) + 1;
+	    // while (nsyl--)
+	    // {
+		// sp = sylls[rnd((sizeof sylls) / (sizeof (char *)))];
+		// if (&cp[strlen(sp)] > &prbuf[MAXNAME])
+		// 	break;
+		// while (*sp)
+		//     *cp++ = *sp++;
+	    // }
+	    // *cp++ = ' ';
 	}
 	*--cp = '\0';
 	s_names[i] = (char *) malloc((unsigned) strlen(prbuf)+1);

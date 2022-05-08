@@ -19,25 +19,17 @@
 #define	EQSTR(a, b)	(strcmp(a, b) == 0)
 
 char *h_names[] = {		/* strings for hitting */
-	" scored an excellent hit on ",
-	" hit ",
-	" have injured ",
-	" swing and hit ",
-	" scored an excellent hit on ",
-	" hit ",
-	" has injured ",
-	" swings and hits "
+	"Taı dea ",
+	"Dea ",
+	"Hıao ",
+	"Zuydea ",
 };
 
 char *m_names[] = {		/* strings for missing */
-	" miss",
-	" swing and miss",
-	" barely miss",
-	" don't hit",
-	" misses",
-	" swings and misses",
-	" barely misses",
-	" doesn't hit",
+	"Buaq dea ",
+	"Buaq hıao ",
+	"Deabuaq ",
+	"Bu dea "
 };
 
 /*
@@ -94,8 +86,7 @@ fight(coord *mp, THING *weap, bool thrown)
 	    ch = (char)(rnd(26) + 'A');
 	    mvaddch(tp->t_pos.y, tp->t_pos.x, ch);
 	}
-	msg(choose_str("heavy!  That's a nasty critter!",
-		       "wait!  That's a xeroc!"));
+	msg("Obe, aıkopı ní da!");
 	if (!thrown)
 	    return FALSE;
     }
@@ -341,6 +332,35 @@ attack(THING *mp)
         return(0);
 }
 
+const char vowels[6][8][5] = {
+    {"a", "", "á", "ä", "a", "â", "à", "ã"},
+    {"e", "", "é", "ë", "e", "ê", "è", "ẽ"},
+    {"ı", "", "í", "ï", "ı", "î", "ì", "ĩ"},
+    {"o", "", "ó", "ö", "o", "ô", "ò", "õ"},
+    {"u", "", "ú", "ü", "u", "û", "ù", "ũ"},
+    {"y", "", "ý", "ÿ", "y", "ŷ", "ỳ", "ỹ"},
+};
+
+char *
+conjugate(char *string, int tone) {
+    static char buf[MAXSTR] = {};
+    int i, n;
+    char *s, *t;
+    for (s = string, t = buf; *s;) {
+        for (i = 0; i < 6; i++) {
+            n = strlen(vowels[i][0]);
+            if (!strncmp(s, vowels[i][0], n)) {
+                strcpy(t, vowels[i][tone]);
+                strcpy(t + strlen(vowels[i][tone]), s + n);
+                return buf;
+            }
+        }
+        *t++ = *s++;
+    }
+    *t = '\0';
+    return buf;
+}
+
 /*
  * set_mname:
  *	return the monster name for the given monster
@@ -348,12 +368,13 @@ attack(THING *mp)
 char *
 set_mname(THING *tp)
 {
-    int ch;
+    int ch, i, did_t2 = FALSE;
     char *mname;
-    static char tbuf[MAXSTR] = { 't', 'h', 'e', ' ' };
+    static char tbuf[MAXSTR] = {};
+    char *s, *t;
 
     if (!see_monst(tp) && !on(player, SEEMONST))
-	return (terse ? "it" : "something");
+	return "sa raı";
     else if (on(player, ISHALU))
     {
 	move(tp->t_pos.y, tp->t_pos.x);
@@ -366,8 +387,7 @@ set_mname(THING *tp)
     }
     else
 	mname = monsters[tp->t_type - 'A'].m_name;
-    strcpy(&tbuf[4], mname);
-    return tbuf;
+    return conjugate(mname, 2);
 }
 
 /*
@@ -488,7 +508,7 @@ prname(char *mname, bool upper)
 
     *tbuf = '\0';
     if (mname == 0)
-	strcpy(tbuf, "you"); 
+	strcpy(tbuf, "súq"); 
     else
 	strcpy(tbuf, mname);
     if (upper)
@@ -522,25 +542,14 @@ thunk(THING *weap, char *mname, bool noend)
 void
 hit(char *er, char *ee, bool noend)
 {
-    int i;
-    char *s;
     extern char *h_names[];
 
     if (to_death)
 	return;
-    addmsg(prname(er, TRUE));
-    if (terse)
-	s = " hit";
-    else
-    {
-	i = rnd(4);
-	if (er != NULL)
-	    i += 4;
-	s = h_names[i];
-    }
-    addmsg(s);
-    if (!terse)
-	addmsg(prname(ee, FALSE));
+    addmsg(h_names[rnd(4)]);
+    addmsg(prname(er, FALSE));
+    if (!terse) addmsg(" %s", prname(ee, FALSE));
+	addmsg(" da.");
     if (!noend)
 	endmsg();
 }
@@ -552,21 +561,14 @@ hit(char *er, char *ee, bool noend)
 void
 miss(char *er, char *ee, bool noend)
 {
-    int i;
     extern char *m_names[];
 
     if (to_death)
 	return;
-    addmsg(prname(er, TRUE));
-    if (terse)
-	i = 0;
-    else
-	i = rnd(4);
-    if (er != NULL)
-	i += 4;
-    addmsg(m_names[i]);
-    if (!terse)
-	addmsg(" %s", prname(ee, FALSE));
+    addmsg(m_names[rnd(4)]);
+    addmsg(prname(er, FALSE));
+    if (!terse) addmsg(" %s", prname(ee, FALSE));
+    addmsg(" da.");
     if (!noend)
 	endmsg();
 }
@@ -581,7 +583,7 @@ bounce(THING *weap, char *mname, bool noend)
     if (to_death)
 	return;
     if (weap->o_type == WEAPON)
-	addmsg("the %s misses ", weap_info[weap->o_which].oi_name);
+	addmsg("Bu fuo ke %s ", weap_info[weap->o_which].oi_name);
     else
 	addmsg("you missed ");
     addmsg(mname);
@@ -666,14 +668,12 @@ killed(THING *tp, bool pr)
     {
 	if (has_hit)
 	{
-	    addmsg(".  Defeated ");
+	    addmsg(".  Luı soıtaı súq ");
 	    has_hit = FALSE;
 	}
 	else
 	{
-	    if (!terse)
-		addmsg("you have ");
-	    addmsg("defeated ");
+	    addmsg("Luı soıtaı súq ");
 	}
 	msg(mname);
     }
