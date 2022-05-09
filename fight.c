@@ -107,12 +107,12 @@ fight(coord *mp, THING *weap, bool thrown)
 	    player.t_flags &= ~CANHUH;
 	    endmsg();
 	    has_hit = FALSE;
-	    msg("your hands stop glowing %s", pick_color("red"));
+	    msg("Shaı gîozıa súqbo muq baq %s da.", pick_color("kıa"));
 	}
 	if (tp->t_stats.s_hpt <= 0)
 	    killed(tp, TRUE);
 	else if (did_hit && !on(player, ISBLIND))
-	    msg("%s appears confused", mname);
+	    msg("Du bıao %s da.", mname);
 	did_hit = TRUE;
     }
     else
@@ -207,17 +207,11 @@ attack(THING *mp)
 			if (!ISWEARING(R_SUSTSTR))
 			{
 			    chg_str(-1);
-			    if (!terse)
-				msg("you feel a bite in your leg and now feel weaker");
-			    else
-				msg("a bite has weakened you");
+			    msg("Nıoqjıaı sa súqbo shıaq cà tûaırue súq da.");
 			}
 			else if (!to_death)
 			{
-			    if (!terse)
-				msg("a bite momentarily weakens you");
-			    else
-				msg("bite has no effect");
+			    msg("Nıoqjıaı sa súqbo shıaq cà sıa da.");
 			}
 		    }
 		when 'W':
@@ -251,7 +245,7 @@ attack(THING *mp)
 			    pstats.s_hpt = 1;
 			if (max_hp <= 0)
 			    death(mp->t_type);
-			msg("you suddenly feel weaker");
+			msg("Eka taqgaı tuaırue súq da.");
 		    }
 		when 'F':
 		    /*
@@ -277,7 +271,7 @@ attack(THING *mp)
 		    remove_mon(&mp->t_pos, mp, FALSE);
                     mp=NULL;
 		    if (purse != lastpurse)
-			msg("your purse feels lighter");
+			msg("Gaı súq lûı dıa lıu súqbo nuaıheq da.");
 		}
 		when 'N':
 		{
@@ -299,7 +293,7 @@ attack(THING *mp)
 			remove_mon(&mp->t_pos, moat(mp->t_pos.y, mp->t_pos.x), FALSE);
                         mp=NULL;
 			leave_pack(steal, FALSE, FALSE);
-			msg("she stole %s!", inv_name(steal, TRUE));
+			msg("Bonua hó %s da!", inv_name(steal, TRUE));
 			discard(steal);
 		    }
 		}
@@ -526,10 +520,10 @@ thunk(THING *weap, char *mname, bool noend)
     if (to_death)
 	return;
     if (weap->o_type == WEAPON)
-	addmsg("the %s hits ", weap_info[weap->o_which].oi_name);
+	addmsg("Doka ke %s ", weap_info[weap->o_which].oi_name);
     else
-	addmsg("you hit ");
-    addmsg("%s", mname);
+	addmsg("Doka súqbo ");
+    addmsg("%s da.", mname);
     if (!noend)
 	endmsg();
 }
@@ -585,7 +579,7 @@ bounce(THING *weap, char *mname, bool noend)
     if (weap->o_type == WEAPON)
 	addmsg("Bu fuo ke %s ", weap_info[weap->o_which].oi_name);
     else
-	addmsg("you missed ");
+	addmsg("Bu fuo súqbo ");
     addmsg(mname);
     if (!noend)
 	endmsg();
