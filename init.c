@@ -115,6 +115,7 @@ int cNCOLORS = NCOLORS;
 static char *gismu_mid[] = {"ct","cp","cf","ck","cm","cn","cl","cr","jd","jb","jv","jg","jm","jn","jl","jr","st","sp","sf","sk","sx","sm","sn","sl","sr","zd","zb","zv","zg","zm","zn","zl","zr","tc","ts","tp","tf","tk","tx","tm","tn","tl","tr","dj","dz","db","dv","dg","dm","dn","dl","dr","pc","ps","pt","pf","pk","px","pm","pn","pl","pr","bj","bz","bd","bv","bg","bm","bn","bl","br","fc","fs","ft","fp","fk","fx","fm","fn","fl","fr","vj","vz","vd","vb","vg","vm","vn","vl","vr","kc","ks","kt","kp","kf","km","kn","kl","kr","gj","gz","gd","gb","gv","gm","gn","gl","gr","xs","xt","xp","xf","xm","xn","xl","xr","mc","mj","ms","mt","md","mp","mb","mf","mv","mk","mg","mx","mn","ml","mr","nc","nj","ns","nz","nt","nd","np","nb","nf","nv","nk","ng","nx","nm","nl","nr","lc","lj","ls","lz","lt","ld","lp","lb","lf","lv","lk","lg","lx","lm","ln","lr","rc","rj","rs","rz","rt","rd","rp","rb","rf","rv","rk","rg","rx","rm","rn","rl"};
 static char *gismu_init[] = {"bl","br","cf","ck","cl","cm","cn","cp","cr","ct","dj","dr","dz","fl","fr","gl","gr","jb","jd","jg","jm","jv","kl","kr","ml","mr","pl","pr","sf","sk","sl","sm","sn","sp","sr","st","tc","tr","ts","vl","vr","xl","xr","zb","zd","zg","zm","zv"};
 
+/*
 static char *sylls[] = {
 "by","bay","bey","boy","boeq","buao","bueq","bıaı","bıeq","bıoq",
 "pay","pey","pou","poy","pıq","peaq","peaı","poeq","puoı","pıeq","pıoq",
@@ -135,6 +136,7 @@ static char *sylls[] = {
 "key","keoq","koeq",
 "hay","hoy","huy","hıq","hıy","heaı","hoeq","huoq",
 };
+*/
 
 STONE stones[] = {
     { "manaopıo",		 25},
@@ -169,39 +171,23 @@ STONE stones[] = {
 int cNSTONES = NSTONES;
 
 char *wood[] = {
-    "avocado wood",
-    "balsa",
-    "bamboo",
-    "banyan",
-    "birch",
-    "cedar",
-    "cherry",
-    "cinnibar",
-    "cypress",
-    "dogwood",
-    "driftwood",
-    "ebony",
-    "elm",
-    "eucalyptus",
-    "fall",
-    "hemlock",
-    "holly",
-    "ironwood",
-    "kukui wood",
-    "mahogany",
-    "manzanita",
-    "maple",
-    "oaken",
-    "persimmon wood",
-    "pecan",
-    "pine",
-    "poplar",
-    "redwood",
-    "rosewood",
-    "spruce",
-    "teak",
-    "walnut",
-    "zebrawood",
+    /* I don't want to translate a bunch of obscure woods so let's just describe staffs with shape adjectives */
+    "buaı",
+    "choı",
+    "de",
+    "doq",
+    "fıe",
+    "goaq",
+    "gue",
+    "jua",
+    "koq",
+    "lıu",
+    "nea",
+    "ruoq",
+    "sao",
+    "shıa",
+    "sıq",
+    "tuoq",
 };
 
 #define NWOOD (sizeof wood / sizeof (char *))
@@ -270,7 +256,7 @@ init_colors()
 void
 init_names()
 {
-    register int nsyl;
+    // register int nsyl;
     register char *cp, *sp;
     register int i, nwords;
 
@@ -358,7 +344,7 @@ init_materials()
 		j = rnd(NMETAL);
 		if (!metused[j])
 		{
-		    ws_type[i] = "wand";
+		    ws_type[i] = "nuıbeaq";
 		    str = metal[j];
 		    metused[j] = TRUE;
 		    break;
@@ -369,7 +355,7 @@ init_materials()
 		j = rnd(NWOOD);
 		if (!used[j])
 		{
-		    ws_type[i] = "staff";
+		    ws_type[i] = "beaq";
 		    str = wood[j];
 		    used[j] = TRUE;
 		    break;
@@ -380,13 +366,13 @@ init_materials()
 }
 
 #ifdef MASTER
-# define	NT	NUMTHINGS, "things"
-# define	MP	MAXPOTIONS, "potions"
-# define	MS	MAXSCROLLS, "scrolls"
-# define	MR	MAXRINGS, "rings"
-# define	MWS	MAXSTICKS, "sticks"
-# define	MW	MAXWEAPONS, "weapons"
-# define	MA	MAXARMORS, "armor"
+# define	NT	NUMTHINGS, "raı"
+# define	MP	MAXPOTIONS, "majınao"
+# define	MS	MAXSCROLLS, "majıpeq"
+# define	MR	MAXRINGS, "cheıbıu"
+# define	MWS	MAXSTICKS, "majıbeaq"
+# define	MW	MAXWEAPONS, "hıaochuo"
+# define	MA	MAXARMORS, "leoqfuq"
 #else
 # define	NT	NUMTHINGS
 # define	MP	MAXPOTIONS
