@@ -1601,7 +1601,7 @@ rs_write_thing(FILE *savef, THING *t)
         rs_write_int(savef,0);
     }
     
-    rs_write_short(savef, t->_t._t_flags);
+    rs_write_int(savef, t->_t._t_flags);
     rs_write_stats(savef, &t->_t._t_stats);
     rs_write_room_reference(savef, t->_t._t_room);
     rs_write_object_list(savef, t->_t._t_pack);
@@ -1678,7 +1678,7 @@ rs_read_thing(FILE *inf, THING *t)
     else
         t->_t._t_dest = NULL;
             
-    rs_read_short(inf,&t->_t._t_flags);
+    rs_read_int(inf,&t->_t._t_flags);
     rs_read_stats(inf,&t->_t._t_stats);
     rs_read_room_reference(inf, &t->_t._t_room);
     rs_read_object_list(inf,&t->_t._t_pack);

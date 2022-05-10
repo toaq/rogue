@@ -207,11 +207,11 @@ attack(THING *mp)
 			if (!ISWEARING(R_SUSTSTR))
 			{
 			    chg_str(-1);
-			    msg("Nıoqjıaı sa súqbo shıaq cà tûaırue súq da.");
+			    msg("Nıoqjıaı %s súqbo shıaq cà tûaırue súq da.", mp->t_flags & MENTIONED ? "hó" : "sa");
 			}
 			else if (!to_death)
 			{
-			    msg("Nıoqjıaı sa súqbo shıaq cà sıa da.");
+			    msg("Nıoqjıaı %s súqbo shıaq cà sıa da.", mp->t_flags & MENTIONED ? "hó" : "sa");
 			}
 		    }
 		when 'W':
@@ -362,10 +362,9 @@ conjugate(char *string, int tone) {
 char *
 set_mname(THING *tp)
 {
-    int ch, i, did_t2 = FALSE;
+    int ch;
     char *mname;
-    static char tbuf[MAXSTR] = {};
-    char *s, *t;
+    static char tbuf[MAXSTR] = { 's', 'a', ' ' };
 
     if (!see_monst(tp) && !on(player, SEEMONST))
 	return "sa raı";
@@ -381,7 +380,14 @@ set_mname(THING *tp)
     }
     else
 	mname = monsters[tp->t_type - 'A'].m_name;
-    return conjugate(mname, 2);
+
+    if (tp->t_flags & MENTIONED) {
+	return conjugate(mname, 2);
+    } else {
+	tp->t_flags |= MENTIONED;
+	strcpy(&tbuf[3], conjugate(mname, 4));
+	return tbuf;
+    }
 }
 
 /*

@@ -174,6 +174,7 @@
 #define SEEMONST 040000		/* hero can detect unseen monsters */
 #define ISFLY	0040000		/* creature can fly */
 #define ISSLOW	0100000		/* creature has been slowed */
+#define MENTIONED 0200000	/* creature has been mentioned in text */
 
 /*
  * Flags for level map
@@ -379,7 +380,7 @@ union thing {
 	char _t_disguise;		/* What mimic looks like */
 	char _t_oldch;			/* Character that was where it was */
 	coord *_t_dest;			/* Where it is running to */
-	short _t_flags;			/* State word */
+	int _t_flags;			/* State word */
 	struct stats _t_stats;		/* Physical description */
 	struct room *_t_room;		/* Current room for thing */
 	union thing *_t_pack;		/* What the thing is carrying */
@@ -453,7 +454,7 @@ typedef struct {
 struct monster {
     char *m_name;			/* What to call the monster */
     int m_carry;			/* Probability of carrying something */
-    short m_flags;			/* things about the monster */
+    int m_flags;			/* things about the monster */
     struct stats m_stats;		/* Initial stats */
 };
 

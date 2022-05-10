@@ -42,25 +42,25 @@ inv_name(THING *obj, bool drop)
 	when SCROLL:
 	    if (obj->o_count == 1)
 	    {
-		strcpy(pb, "sa shı majıpeq ");
+		strcpy(pb, "sa shı peq ");
 		pb = &prbuf[strlen(prbuf)];
 	    }
 	    else
 	    {
-		sprintf(pb, "sa %d majıpeq ", obj->o_count);
+		sprintf(pb, "sa %d peq ", obj->o_count);
 		pb = &prbuf[strlen(prbuf)];
 	    }
 	    op = &scr_info[which];
 	    if (op->oi_know)
 		sprintf(pb, "%s", op->oi_name);
 	    else if (op->oi_guess)
-		sprintf(pb, "chüa mó «%s» teo hóa", op->oi_guess);
+		sprintf(pb, "chüa shú «%s» hóa", op->oi_guess);
 	    else
-		sprintf(pb, "käıte hóa mó «%s» teo", s_names[which]);
+		sprintf(pb, "kaıte shu «%s»", s_names[which]);
 	when FOOD:
 	    if (which == 1)
 		if (obj->o_count == 1)
-		    sprintf(pb, "sa shı %s", vowelstr(fruit), fruit);
+		    sprintf(pb, "sa shı %s", fruit);
 		else
 		    sprintf(pb, "sa %d %s", obj->o_count, fruit);
 	    else
