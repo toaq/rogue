@@ -976,7 +976,7 @@ rs_write_sticks(FILE *savef)
 
     for (i = 0; i < MAXSTICKS; i++)
     {
-        if (strcmp(ws_type[i],"staff") == 0)
+        if (strcmp(ws_type[i],"beaq") == 0)
         {
             rs_write_int(savef,0);
             rs_write_string_index(savef, wood, cNWOOD, ws_made[i]);
@@ -1006,12 +1006,12 @@ rs_read_sticks(FILE *inf)
         if (list == 0)
         {
             rs_read_string_index(inf, wood, cNWOOD, &ws_made[i]);
-            ws_type[i] = "staff";
+            ws_type[i] = "beaq";
         }
         else 
         {
             rs_read_string_index(inf, metal, cNMETAL, &ws_made[i]);
-            ws_type[i] = "wand";
+            ws_type[i] = "nuıbeaq";
         }
     }
 

@@ -34,7 +34,7 @@ main(int argc, char **argv, char **envp)
      * Check to see if he is a wizard
      */
     if (argc >= 2 && argv[1][0] == '\0')
-	if (strcmp(PASSWD, md_crypt(md_getpass("wizard's password: "), "mT")) == 0)
+	if (strcmp(PASSWD, md_crypt(md_getpass("Po mí wızard ga shuıtoa hı moq? "), "mT")) == 0)
 	{
 	    wizard = TRUE;
 	    player.t_flags |= SEEMONST;
@@ -111,7 +111,7 @@ main(int argc, char **argv, char **envp)
 	printf("Hello %s, welcome to dungeon #%d", whoami, dnum);
     else
 #endif
-	printf("Hello %s, just a moment while I dig the dungeon...", whoami);
+	printf("Jadı hu mí %s, lao súq bâı jí baq doqjoq bâ...", whoami);
     fflush(stdout);
 
     initscr();				/* Start up cursor package */
@@ -128,7 +128,7 @@ main(int argc, char **argv, char **envp)
      */
     if (LINES < NUMLINES || COLS < NUMCOLS)
     {
-	printf("\nSorry, the screen must be at least %dx%d\n", NUMLINES, NUMCOLS);
+	printf("\nKuaq sheo ka, duaı huaq sao jíoqchuao baq po %dx%d da.\n", NUMLINES, NUMCOLS);
 	endwin();
 	my_exit(1);
     }
@@ -163,7 +163,7 @@ void
 endit(int sig)
 {
     NOOP(sig);
-    fatal("Okay, bye bye!\n");
+    fatal("Ina, baıbaı!\n");
 }
 
 /*
@@ -301,12 +301,12 @@ quit(int sig)
     if (!q_comm)
 	mpos = 0;
     getyx(curscr, oy, ox);
-    msg("really quit?");
-    if (readchar() == 'y')
+    msg("Ma shaotaq shaı luaq súq moq? (n/z)");
+    if (readchar() == 'n')
     {
 	signal(SIGINT, leave);
 	clear();
-	mvprintw(LINES - 2, 0, "You quit with %d gold pieces", purse);
+	mvprintw(LINES - 2, 0, "Luı shâı súq pòı heaq sa %d nuaıhea da.", purse);
 	move(LINES - 1, 0);
 	refresh();
 	score(purse, 1, 0);
@@ -373,7 +373,7 @@ shell()
      */
     md_shellescape();
 
-    printf("\n[Press return to continue]");
+    printf("\n[Hupa súq níqgıucıoq shou]");
     fflush(stdout);
     noecho();
     raw();

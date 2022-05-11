@@ -55,14 +55,14 @@ over:
 		msg("");
 		return;
 	    }
-	    else if (c == 'n' || c == 'N' || c == 'y' || c == 'Y')
+	    else if (c == 'z' || c == 'Z' || c == 'n' || c == 'N')
 		break;
 	    else
-		msg("please answer Y or N");
+		msg("please answer N or Z");
 	}
-	if (c == 'y' || c == 'Y')
+	if (c == 'n' || c == 'N')
 	{
-	    addstr("Yes\n");
+	    addstr("Nho\n");
 	    refresh();
 	    strcpy(buf, file_name);
 	    goto gotfile;
@@ -89,18 +89,18 @@ gotfile:
 	{
 	    for (;;)
 	    {
-		msg("File exists.  Do you wish to overwrite it?");
+		msg("Chua ní sa jıqhaı kao da. Ma shao súq nîqkaı moq?");
 		mpos = 0;
 		if ((c = readchar()) == ESCAPE)
 		    goto quit_it;
-		if (c == 'y' || c == 'Y')
+		if (c == 'n' || c == 'N')
 		    break;
-		else if (c == 'n' || c == 'N')
+		else if (c == 'z' || c == 'Z')
 		    goto over;
 		else
-		    msg("Please answer Y or N");
+		    msg("Koe súq sa shú [N]ho roı shú [Z]ı ba.");
 	    }
-	    msg("file name: %s", buf);
+	    msg("Kaochua: shú %s", buf);
 	    md_unlink(file_name);
 	}
 	strcpy(file_name, buf);
@@ -186,7 +186,7 @@ restore(char *file, char **envp)
     encread(buf, (unsigned) strlen(version) + 1, inf);
     if (strcmp(buf, version) != 0)
     {
-	printf("Sorry, saved game is out of date.\n");
+	printf("Kuaq sheo ka, duı geo ní luaqchukao dâ.\n");
 	return FALSE;
     }
     encread(buf,80,inf);
@@ -198,15 +198,16 @@ restore(char *file, char **envp)
     if (lines > LINES)
     {
         endwin();
-        printf("Sorry, original game was played on a screen with %d lines.\n",lines);
-        printf("Current screen only has %d lines. Unable to restore game\n",LINES);
+        // ntf("Sorry, original game was played on a screen with %d lines.\n",lines);
+        printf("Oaı, sao pó ní luaqchukao ga jıoqchuao nhè sa %d toagıu da.\n",lines);
+        printf("Naı sheaqsao súqbo nhè sa %d bü bıaq pùoq rîu luaq da.\n",LINES);
         return(FALSE);
     }
     if (cols > COLS)
     {
         endwin();
-        printf("Sorry, original game was played on a screen with %d columns.\n",cols);
-        printf("Current screen only has %d columns. Unable to restore game\n",COLS);
+        printf("Oaı, nea pó ní luaqchukao ga jıoqchuao nhè sa %d nhuosheaq da.\n",lines);
+        printf("Naı nea súqbo nhè sa %d bü bıaq pùoq rîu luaq da.\n",LINES);
         return(FALSE);
     }
 
@@ -225,7 +226,7 @@ restore(char *file, char **envp)
 #endif
         md_unlink_open_file(file, inf) < 0)
     {
-	printf("Cannot unlink file\n");
+	printf("Buaq jıqnua dao da\n");
 	return FALSE;
     }
     mpos = 0;
@@ -243,14 +244,14 @@ restore(char *file, char **envp)
 	if (sbuf2.st_nlink != 1 || syml)
 	{
 	    endwin();
-	    printf("\nCannot restore from a linked file\n");
+	    printf("\nBuaq rıu lûaq sìy káo da\n");
 	    return FALSE;
 	}
 
     if (pstats.s_hpt <= 0)
     {
 	endwin();
-	printf("\n\"He's dead, Jim\"\n");
+	printf("\n\"Shuaınu muaq nháo dâ!\"\n");
 	return FALSE;
     }
 
@@ -260,7 +261,7 @@ restore(char *file, char **envp)
     strcpy(file_name, file);
     clearok(curscr, TRUE);
     srand(md_getpid());
-    msg("file name: %s", file);
+    msg("Kaochua: %s", file);
     playit();
     /*NOTREACHED*/
     return(0);

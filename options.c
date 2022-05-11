@@ -111,7 +111,7 @@ option()
      * Switch back to original screen
      */
     wmove(hw, LINES - 1, 0);
-    waddstr(hw, "--Hupa súq shéalaıcıoq ba--");
+    waddstr(hw, "--Hupa súq shéalaıcıoq shou--");
     wrefresh(hw);
     wait_for(' ');
     clearok(curscr, TRUE);
