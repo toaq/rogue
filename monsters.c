@@ -188,10 +188,7 @@ wake_monster(int y, int x)
 		    fuse(unconfuse, 0, spread(HUHDURATION), AFTER);
 		player.t_flags |= ISHUH;
 		mname = set_mname(tp);
-		addmsg("%s", mname);
-		if (strcmp(mname, "it") != 0)
-		    addmsg("'");
-		msg("s gaze has confused you");
+        msg("Toı kaqcoe %s súq cà bîao súq da!", conjugate(mname, 2));
 	    }
 	}
     }

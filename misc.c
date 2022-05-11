@@ -287,10 +287,7 @@ eat()
 	return;
     if (obj->o_type != FOOD)
     {
-	if (!terse)
-	    msg("ugh, you would get ill if you ate that");
-	else
-	    msg("that's Inedible!");
+	msg("Ifu, bıa súq ào chúq súq ní da!");
 	return;
     }
     if (food_left < 0)
@@ -301,16 +298,16 @@ eat()
     if (obj == cur_weapon)
 	cur_weapon = NULL;
     if (obj->o_which == 1)
-	msg("my, that was a yummy %s", fruit);
+	msg("Ume, noqgı ní %s da!", fruit);
     else
 	if (rnd(100) > 70)
 	{
 	    pstats.s_exp++;
-	    msg("%s, this food tastes awful", choose_str("bummer", "yuk"));
+	    msg("Ifu, jaq noqhuı ní haq da!");
 	    check_level();
 	}
 	else
-	    msg("%s, that tasted good", choose_str("oh, wow", "yum"));
+	    msg("Ume, noqgı ní haq da!");
     leave_pack(obj, FALSE, FALSE);
 }
 
@@ -335,7 +332,7 @@ check_level()
 	add = roll(i - olevel, 10);
 	max_hp += add;
 	pstats.s_hpt += add;
-	msg("welcome to level %d", i);
+	msg("Sha joene péı %d súq da.", i);
     }
 }
 
@@ -387,7 +384,7 @@ add_haste(bool potion)
 	no_command += rnd(8);
 	player.t_flags &= ~(ISRUN|ISHASTE);
 	extinguish(nohaste);
-	msg("you faint from exhaustion");
+	msg("Sho sısıa súq kùı dûı seakuaı súq da.");
 	return FALSE;
     }
     else
@@ -446,9 +443,7 @@ is_current(THING *obj)
     if (obj == cur_armor || obj == cur_weapon || obj == cur_ring[LEFT]
 	|| obj == cur_ring[RIGHT])
     {
-	if (!terse)
-	    addmsg("That's already ");
-	msg("in use");
+	msg("Haı chufaq choq súq ní da.");
 	return TRUE;
     }
     return FALSE;
@@ -474,10 +469,7 @@ get_dir()
     }
     else
     {
-	if (!terse)
-	    msg(prompt = "which direction? ");
-	else
-	    prompt = "direction: ";
+	msg(prompt = "Fày hı feo? ");
 	do
 	{
 	    gotit = TRUE;
@@ -555,7 +547,7 @@ call_it(struct obj_info *info)
     }
     else if (!info->oi_guess)
     {
-	msg(terse ? "call it: " : "what do you want to call it? ");
+	msg("Chuadoa súq ní hı moq? ");
 	if (get_str(prbuf, stdscr) == NORM)
 	{
 	    if (info->oi_guess != NULL)
