@@ -526,6 +526,7 @@ void	chg_str(int amt);
 void	check_level();
 void	conn(int r1, int r2);
 void	command();
+char *	conjugate(char *string, int tone);
 void	create_obj();
 
 void	current(THING *cur, char *how, char *where);
@@ -667,6 +668,7 @@ void	turnref();
 void	u_level();
 void	uncurse(THING *obj);
 void	unlock_sc();
+size_t	utf8_strlen(const char *s);
 void	vert(struct room *rp, int startx);
 void	wait_for(int ch);
 THING  *wake_monster(int y, int x);
