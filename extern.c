@@ -78,7 +78,7 @@ char *tr_name[] = {			/* Names of the traps */
 	"sa deaqkıao",
 	"sa heruokea",
 	"sa zıa nuosaı",
-	"sa jıaıcheychuo",
+	"sa puejıaıchuo",
 	"sa pıkafachuo",
 	"sa kea ca hıaosaıbıa",
 	"sa kea ca lohagupu",

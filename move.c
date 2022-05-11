@@ -48,7 +48,7 @@ do_move(int dy, int dx)
     if (no_move)
     {
 	no_move--;
-	msg("you are still stuck in the bear trap");
+	msg("Hoaı chufaq jıaı púejıaıchuo súq da.");
 	return;
     }
     /*
@@ -98,7 +98,7 @@ over:
     }
     else if (on(player, ISHELD) && ch != 'F')
     {
-	msg("you are being held");
+	msg("Chufaq jıaı sa súq da.");
 	return;
     }
     switch (ch)
@@ -279,40 +279,40 @@ be_trapped(coord *tc)
 	case T_DOOR:
 	    level++;
 	    new_level();
-	    msg("you fell into a trap!");
+	    msg("Nıeshua súq sa deaqkıao da!");
 	when T_BEAR:
 	    no_move += BEARTIME;
-	    msg("you are caught in a bear trap");
+	    msg("Jıaı sa puejıaıchuo súq da.");
         when T_MYST:
             switch(rnd(11))
             {
-                case 0: msg("you are suddenly in a parallel dimension");
-                when 1: msg("the light in here suddenly seems %s", rainbow[rnd(cNCOLORS)]);
-                when 2: msg("you feel a sting in the side of your neck");
-                when 3: msg("multi-colored lines swirl around you, then fade");
-                when 4: msg("a %s light flashes in your eyes", rainbow[rnd(cNCOLORS)]);
-                when 5: msg("a spike shoots past your ear!");
-                when 6: msg("%s sparks dance across your armor", rainbow[rnd(cNCOLORS)]);
-                when 7: msg("you suddenly feel very thirsty");
-                when 8: msg("you feel time speed up suddenly");
-                when 9: msg("time now seems to be going slower");
-                when 10: msg("you pack turns %s!", rainbow[rnd(cNCOLORS)]);
+                case 0: msg("Eka tısha súq sa heojıaq da!");
+                when 1: msg("Eka sho kaqdu %s níjuı gıo da.", rainbow[rnd(cNCOLORS)]);
+                when 2: msg("Du chôıhıao sa nuı súqbo boa da.");
+                when 3: msg("Rıe sa reomıa puı gıosoaı súq da, rubıe shıy tá da.");
+                when 4: msg("Peo sa %s gıo súqbo kaqhua da.", rainbow[rnd(cNCOLORS)]);
+                when 5: msg("Buaq fuo sa majısoaı súqbo tuaı da!");
+                when 6: msg("Deduy sa %s zıazıa nèo súqbo fuq da!", rainbow[rnd(cNCOLORS)]);
+                when 7: msg("Eka daqnuı jaq pıekuaı súq da.");
+                when 8: msg("Daqnuı gâı súq sûaı pusho baq daq da.");
+                when 9: msg("Gâı súq mêoq pusho baq daq da.");
+                when 10: msg("Sho %s súqbo cea da!", rainbow[rnd(cNCOLORS)]);
             }
 	when T_SLEEP:
 	    no_command += SLEEPTIME;
 	    player.t_flags &= ~ISRUN;
-	    msg("a strange white mist envelops you and you fall asleep");
+	    msg("Rıe sa jua nıapuao súq da, ru nuosho súq da.");
 	when T_ARROW:
 	    if (swing(pstats.s_lvl - 1, pstats.s_arm, 1))
 	    {
 		pstats.s_hpt -= roll(1, 6);
 		if (pstats.s_hpt <= 0)
 		{
-		    msg("an arrow killed you");
+		    msg("Muaqtua sa heruo súq da.");
 		    death('a');
 		}
 		else
-		    msg("oh no! An arrow shot you");
+		    msg("Ahı! Doka sa heruo súq da.");
 	    }
 	    else
 	    {
@@ -321,7 +321,7 @@ be_trapped(coord *tc)
 		arrow->o_count = 1;
 		arrow->o_pos = hero;
 		fall(arrow, FALSE);
-		msg("an arrow shoots past you");
+		msg("Buaq fuo sa rıoduy heruo súq da.");
 	    }
 	when T_TELEP:
 	    /*
@@ -332,21 +332,21 @@ be_trapped(coord *tc)
 	    mvaddch(tc->y, tc->x, TRAP);
 	when T_DART:
 	    if (!swing(pstats.s_lvl+1, pstats.s_arm, 1))
-		msg("a small dart whizzes by your ear and vanishes");
+		msg("Buaq fuo sa nuı jıeqbeaq súq da, ru shıy máq da.");
 	    else
 	    {
 		pstats.s_hpt -= roll(1, 4);
 		if (pstats.s_hpt <= 0)
 		{
-		    msg("a poisoned dart killed you");
+		    msg("Muaqtua sa jıeqbeaq súq da.");
 		    death('d');
 		}
 		if (!ISWEARING(R_SUSTSTR) && !save(VS_POISON))
 		    chg_str(-1);
-		msg("a small dart just hit you in the shoulder");
+		msg("Doka sa jıeqbeaq geı hıaosaıa súq da!");
 	    }
 	when T_RUST:
-	    msg("a gush of water hits you on the head");
+	    msg("Shua sa hıejeoqny nao súq da!");
 	    rust_armor(cur_armor);
     }
     flush_type();
@@ -412,14 +412,11 @@ rust_armor(THING *arm)
     if ((arm->o_flags & ISPROT) || ISWEARING(R_SUSTARM))
     {
 	if (!to_death)
-	    msg("the rust vanishes instantly");
+	    msg("Eka shıy gúpuloha da.");
     }
     else
     {
 	arm->o_arm++;
-	if (!terse)
-	    msg("your armor appears to be weaker now. Oh my!");
-	else
-	    msg("your armor weakens");
+	msg("Oaı, dıa doe súqbo leoqfuq da!");
     }
 }
