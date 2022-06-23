@@ -587,6 +587,7 @@ bounce(THING *weap, char *mname, bool noend)
     else
 	addmsg("Bu fuo súqbo ");
     addmsg(mname);
+    addmsg(" da.");
     if (!noend)
 	endmsg();
 }

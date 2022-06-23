@@ -151,9 +151,7 @@ out:
      */
     if (!silent)
     {
-	if (!terse)
-	    addmsg("you now have ");
-	msg("%s (%c)", inv_name(obj, !terse), obj->o_packch);
+	msg("Sha heaq súq %s (%c) da.", inv_name(obj, !terse), obj->o_packch);
     }
 }
 
@@ -167,12 +165,7 @@ pack_room(bool from_floor, THING *obj)
 {
     if (++inpack > MAXPACK)
     {
-	if (!terse)
-	    addmsg("there's ");
-	addmsg("no room");
-	if (!terse)
-	    addmsg(" in your pack");
-	endmsg();
+	msg("Boq heqmuo súqbo cea da.");
 	if (from_floor)
 	    move_msg(obj);
 	inpack = MAXPACK;
@@ -340,7 +333,7 @@ move_msg(THING *obj)
 {
     if (!terse)
 	addmsg("you ");
-    msg("moved onto %s", inv_name(obj, TRUE));
+    msg("Tı ní %s da.", inv_name(obj, TRUE));
 }
 
 /*
@@ -355,12 +348,12 @@ picky_inven()
     char mch;
 
     if (pack == NULL)
-	msg("you aren't carrying anything");
+	msg("Chufaq heaq súq sıa raı da.");
     else if (next(pack) == NULL)
 	msg("a) %s", inv_name(pack, FALSE));
     else
     {
-	msg(terse ? "item: " : "which item do you wish to inventory: ");
+	msg("Shaotaq sı súq hı heaqmu moq? ");
 	mpos = 0;
 	if ((mch = readchar()) == ESCAPE)
 	{
@@ -373,7 +366,7 @@ picky_inven()
 		msg("%c) %s", mch, inv_name(obj, FALSE));
 		return;
 	    }
-	msg("'%s' not in pack", unctrl(mch));
+	msg("Laı '%s' sıa heaqmu da.", unctrl(mch));
     }
 }
 
@@ -388,7 +381,7 @@ get_item(char *purpose, int type)
     char ch;
 
     if (pack == NULL)
-	msg("you aren't carrying anything");
+	msg("Heaq súq sıa raı da.");
     else if (again)
 	if (last_pick)
 	    return last_pick;
