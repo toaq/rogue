@@ -40,25 +40,25 @@ typedef struct optstruct	OPTION;
 void	pr_optname(OPTION *op);
 
 OPTION	optlist[] = {
-    {"terse",	 "Terse output",
+    {"terse",	 "He huaq doq baq kaıse",
 		 &terse,	put_bool,	get_bool	},
-    {"flush",	 "Flush typeahead during battle",
+    {"flush",	 "He casıa kêakaı há sa puq rào sa soıtue",
 		 &fight_flush,	put_bool,	get_bool	},
-    {"jump",	 "Show position only at end of run",
+    {"jump",	 "He pıka jâra há",
 		 &jump,		put_bool,	get_bool	},
-    {"seefloor", "Show the lamp-illuminated floor",
+    {"seefloor", "Kaqkıu baq gıotı deaq",
 		 &see_floor,	put_bool,	get_sf		},
-    {"passgo",	"Follow turnings in passageways",
+    {"passgo",	"He tıeqfa há baq tıeqbea",
 		 &passgo,	put_bool,	get_bool	},
-    {"tombstone", "Print out tombstone when killed",
+    {"tombstone", "Kaqgaı há sa muaqpıo hè mûaqsho áq",
 		 &tombstone,	put_bool,	get_bool	},
-    {"inven",	"Inventory style",
+    {"inven",	"Cha hı hâo héaqshuo",
 		 &inv_type,	put_inv_t,	get_inv_t	},
-    {"name",	 "Name",
+    {"name",	 "Chua hı ke luaq",
 		 whoami,	put_str,	get_str		},
-    {"fruit",	 "Fruit",
+    {"fruit",	 "Chua hı baq zeo",
 		 fruit,		put_str,	get_str		},
-    {"file",	 "Save file",
+    {"file",	 "Chua hı baq luaqchukao",
 		 file_name,	put_str,	get_str		}
 };
 
