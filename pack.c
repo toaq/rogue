@@ -46,7 +46,7 @@ add_pack(THING *obj, bool silent)
 	    mvaddch(hero.y, hero.x, floor_ch());
 	    chat(hero.y, hero.x) = (proom->r_flags & ISGONE) ? PASSAGE : FLOOR;
 	    discard(obj);
-	    msg("the scroll turns to dust as you pick it up");
+	    msg("Puosho ke majıpeq bòq hêaqsho súq máq da.");
 	    return;
 	}
 
@@ -267,12 +267,8 @@ inventory(THING *list, int type)
     }
     if (n_objs == 0)
     {
-	if (terse)
-	    msg(type == 0 ? "empty handed" :
-			    "nothing appropriate");
-	else
-	    msg(type == 0 ? "you are empty handed" :
-			    "you don't have anything appropriate");
+	msg(type == 0 ? "Heaq súq sıa da." :
+			"Heaq súq sıa tıao da.");
 	return FALSE;
     }
     end_line();
@@ -308,7 +304,7 @@ pick_up(char ch)
 		break;
 	    default:
 #ifdef MASTER
-		debug("Where did you pick a '%s' up???", unctrl(ch));
+		debug("Hıa '%s' moq???", unctrl(ch));
 #endif
 	    case ARMOR:
 	    case POTION:
@@ -386,17 +382,15 @@ get_item(char *purpose, int type)
 	if (last_pick)
 	    return last_pick;
 	else
-	    msg("you ran out");
+	    msg("Achoqte da.");
     else
     {
 	for (;;)
 	{
 	    if (!terse)
-		addmsg("which object do you want to ");
+	    addmsg("Taoshao ");
 	    addmsg(purpose);
-	    if (terse)
-		addmsg(" what");
-	    msg("? (* for list): ");
+	    msg(" súq hı raı moq? (* = mekao): ");
 	    ch = readchar();
 	    mpos = 0;
 	    /*
@@ -425,7 +419,7 @@ get_item(char *purpose, int type)
 		    break;
 	    if (obj == NULL)
 	    {
-		msg("'%s' is not a valid item",unctrl(ch));
+		msg("Jıq sıa mı '%s' da",unctrl(ch));
 		continue;
 	    }
 	    else 
@@ -448,9 +442,7 @@ money(int value)
     chat(hero.y, hero.x) = (proom->r_flags & ISGONE) ? PASSAGE : FLOOR;
     if (value > 0)
     {
-	if (!terse)
-	    addmsg("you found ");
-	msg("%d gold pieces", value);
+	msg("Heaqshó súq sa %d hea hoeloha da.", value);
     }
 }
 
