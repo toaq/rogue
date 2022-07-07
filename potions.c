@@ -25,11 +25,11 @@ typedef struct
 static PACT p_actions[] =
 {
 	{ ISHUH,	unconfuse,	HUHDURATION,	/* P_CONFUSE */
-		"what a tripy feeling!",
-		"wait, what's going on here. Huh? What? Who?" },
+		"A, jaqbeı jua ní gaıse da!",
+		"Oaı, faq hı raı moq? É? Hıa moq?" },
 	{ ISHALU,	come_down,	SEEDURATION,	/* P_LSD */
-		"Oh, wow!  Everything seems so cosmic!",
-		"Oh, wow!  Everything seems so cosmic!" },
+		"Obe, sha kaqjeo ruajua tu da!",
+		"Obe, sha kaqjeo ruajua tu da!" },
 	{ 0,		NULL,	0 },			/* P_POISON */
 	{ 0,		NULL,	0 },			/* P_STRENGTH */
 	{ CANSEE,	unsee,	SEEDURATION,		/* P_SEEINVIS */
@@ -43,11 +43,11 @@ static PACT p_actions[] =
 	{ 0,		NULL,	0 },			/* P_HASTE */
 	{ 0,		NULL,	0 },			/* P_RESTORE */
 	{ ISBLIND,	sight,	SEEDURATION,		/* P_BLIND */
-		"oh, bummer!  Everything is dark!  Help!",
-		"a cloak of darkness falls around you" },
+		"A, hecy!  Sha moy tu raı da!  Soa ba!",
+		"Eka sho kaqdeqbu súq da." },
 	{ ISLEVIT,	land,	HEALTIME,		/* P_LEVIT */
-		"oh, wow!  You're floating in the air!",
-		"you start to float in the air" }
+		"Obe!  Rara lıaı súq río da!",
+		"Eka ceo rıolıaı súq da." }
 };
 
 /*
@@ -62,7 +62,7 @@ quaff()
     bool discardit = FALSE;
     bool show, trip;
 
-    obj = get_item("quaff", POTION);
+    obj = get_item("pıe", POTION);
     /*
      * Make certain that it is somethings that we want to drink
      */
@@ -70,10 +70,7 @@ quaff()
 	return;
     if (obj->o_type != POTION)
     {
-	if (!terse)
-	    msg("yuk! Why would you want to drink that?");
-	else
-	    msg("that's undrinkable");
+	msg("Bu kıu pıe ní da.");
 	return;
     }
     if (obj == cur_weapon)
@@ -92,11 +89,11 @@ quaff()
 	when P_POISON:
 	    pot_info[P_POISON].oi_know = TRUE;
 	    if (ISWEARING(R_SUSTSTR))
-		msg("you feel momentarily sick");
+		msg("Dãqmoa bı jeojuı bıa súq da.");
 	    else
 	    {
 		chg_str(-(rnd(3) + 1));
-		msg("you feel very sick now");
+		msg("Sha jaq tuaıbıa súq da.");
 		come_down();
 	    }
 	when P_HEALING:
@@ -104,17 +101,17 @@ quaff()
 	    if ((pstats.s_hpt += roll(pstats.s_lvl, 4)) > max_hp)
 		pstats.s_hpt = ++max_hp;
 	    sight();
-	    msg("you begin to feel better");
+	    msg("Jeaq tuaıroe súq da.");
 	when P_STRENGTH:
 	    pot_info[P_STRENGTH].oi_know = TRUE;
 	    chg_str(1);
-	    msg("you feel stronger, now.  What bulging muscles!");
+	    msg("Taqgaı jeaq tuaıcaı súq da.  Jaqbeı moaı súqbo duohua da!");
 	when P_MFIND:
 	    player.t_flags |= SEEMONST;
 	    fuse((void(*)())turn_see, TRUE, HUHDURATION, AFTER);
 	    if (!turn_see(FALSE))
-		msg("you have a %s feeling for a moment, then it passes",
-		    choose_str("normal", "strange"));
+		msg("Daqnuı taqgaı súq sa %s, rubıe bı shıy tá da.",
+		    choose_str("juabu", "jua"));
 	when P_TFIND:
 	    /*
 	     * Potion of magic detection.  Show the potions and scrolls
@@ -149,11 +146,11 @@ quaff()
 	    if (show)
 	    {
 		pot_info[P_TFIND].oi_know = TRUE;
-		show_win("You sense the presence of magic on this level.--More--");
+		show_win("Gaı súq tî sa majı ní me kua da.--Sıe--");
 	    }
 	    else
-		msg("you have a %s feeling for a moment, then it passes",
-		    choose_str("normal", "strange"));
+		msg("Daqnuı taqgaı súq sa %s, rubıe bı shıy tá da.",
+		    choose_str("juabu", "jua"));
 	when P_LSD:
 	    if (!trip)
 	    {
@@ -164,7 +161,7 @@ quaff()
 	    }
 	    do_pot(P_LSD, TRUE);
 	when P_SEEINVIS:
-	    sprintf(prbuf, "this potion tastes like %s juice", fruit);
+	    sprintf(prbuf, "Noqsıu ní majinao baq po baq %s ga zeonao da.", fruit);
 	    show = on(player, CANSEE);
 	    do_pot(P_SEEINVIS, FALSE);
 	    if (!show)
@@ -172,7 +169,7 @@ quaff()
 	    sight();
 	when P_RAISE:
 	    pot_info[P_RAISE].oi_know = TRUE;
-	    msg("you suddenly feel much more skillful");
+	    msg("Eka taqgaı jeaq joe súq da.");
 	    raise_level();
 	when P_XHEAL:
 	    pot_info[P_XHEAL].oi_know = TRUE;
@@ -184,12 +181,12 @@ quaff()
 	    }
 	    sight();
 	    come_down();
-	    msg("you begin to feel much better");
+	    msg("Jaq, jaq jeaq tuaıroe súq da!");
 	when P_HASTE:
 	    pot_info[P_HASTE].oi_know = TRUE;
 	    after = FALSE;
 	    if (add_haste(TRUE))
-		msg("you feel yourself moving much faster");
+		msg("Sha taqgaı deq suaı súq da.");
 	when P_RESTORE:
 	    if (ISRING(LEFT, R_ADDSTR))
 		add_str(&pstats.s_str, -cur_ring[LEFT]->o_arm);
@@ -201,14 +198,14 @@ quaff()
 		add_str(&pstats.s_str, cur_ring[LEFT]->o_arm);
 	    if (ISRING(RIGHT, R_ADDSTR))
 		add_str(&pstats.s_str, cur_ring[RIGHT]->o_arm);
-	    msg("hey, this tastes great.  It make you feel warm all over");
+	    msg("Obe, noqgı ní da.  Sha foaqloq súqbo tuaı da.");
 	when P_BLIND:
 	    do_pot(P_BLIND, TRUE);
 	when P_LEVIT:
 	    do_pot(P_LEVIT, TRUE);
 #ifdef MASTER
 	otherwise:
-	    msg("what an odd tasting potion!");
+	    msg("Jaq jua ní majınao da!");
 	    return;
 #endif
     }
