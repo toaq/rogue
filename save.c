@@ -47,7 +47,7 @@ over:
     {
 	for (;;)
 	{
-	    msg("save file (%s)? ", file_name);
+	    msg("Kaı jí lúaqchudao %s shôu? ", file_name);
 	    c = readchar();
 	    mpos = 0;
 	    if (c == ESCAPE)
@@ -58,7 +58,7 @@ over:
 	    else if (c == 'z' || c == 'Z' || c == 'n' || c == 'N')
 		break;
 	    else
-		msg("please answer N or Z");
+		msg("Koe súq shú N (nho) rı shú Z (zı) shou.");
 	}
 	if (c == 'n' || c == 'N')
 	{
@@ -72,7 +72,7 @@ over:
     do
     {
 	mpos = 0;
-	msg("file name: ");
+	msg("Chua hı lúaqchukao moq? ");
 	buf[0] = '\0';
 	if (get_str(buf, stdscr) == QUIT)
 	{
