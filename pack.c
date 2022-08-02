@@ -442,7 +442,7 @@ money(int value)
     chat(hero.y, hero.x) = (proom->r_flags & ISGONE) ? PASSAGE : FLOOR;
     if (value > 0)
     {
-	msg("Heaqshó súq sa %d hea hoeloha da.", value);
+	msg("Heaqshó súq sa %d hea eloa da.", value);
     }
 }
 

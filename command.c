@@ -604,7 +604,7 @@ identify()
     static struct h_list ident_list[] = {
 	{'|',		"po kúa ga rea",		FALSE},
 	{'-',		"po kúa ga rea",		FALSE},
-	{GOLD,		"hoeloha",				FALSE},
+	{GOLD,		"eloa",				FALSE},
 	{STAIRS,	"pueqmy",			FALSE},
 	{DOOR,		"kıao",				FALSE},
 	{FLOOR,		"deaq",			FALSE},
