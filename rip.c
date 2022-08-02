@@ -25,15 +25,15 @@
 static char *rip[] = {
 "                       __________\n",
 "                      /          \\\n",
-"                     /    LUQ     \\\n",
-"                    /      SEA     \\\n",
-"                   /        BA      \\\n",
+"                     /    L U Q   \\\n",
+"                    /     S E A    \\\n",
+"                   /       B A      \\\n",
 "                  /                  \\\n",
 "                  |                  |\n",
 "                  |                  |\n",
-"                  |   killed by a    |\n",
+"                  |    müaqtua ku    |\n",
 "                  |                  |\n",
-"                  |       1980       |\n",
+"                  |      hóa da      |\n",
 "                 *|     *  *  *      | *\n",
 "         ________)/\\\\_//(\\/(/\\)/\\//\\/|_)_______\n",
     0
@@ -58,10 +58,10 @@ score(int amount, int flags, char monst)
     void (*fp)(int);
     unsigned int uid;
     static char *reason[] = {
-	"killed",
-	"quit",
-	"A total winner",
-	"killed with Amulet"
+	"te muaqtua",
+	"shaı luaq",
+	"muo soıtaı",
+	"te muaqtua rào hêaq neqmy"
     };
 
     start_score();
@@ -268,11 +268,11 @@ death(char monst)
     move(LINES - 1, 0);
     refresh();
     score(purse, amulet ? 3 : 0, monst);
-    printf("[Press return to continue]");
+    printf("[Hupa súq níqgıucıoq shou]");
     fflush(stdout);
     (void) fgets(prbuf,10,stdin);
     my_exit(0);
-}
+
 
 /*
  * center:
@@ -299,21 +299,22 @@ total_winner()
 
     clear();
     standout();
+    addstr("     @                @@@@@             @@@@    @         @    \n");
+    addstr("     @                  @              @       @          @    \n");
+    addstr("     @     @   @ @@     @   @@@  @@    @     @   @  @@@@  @    \n");
+    addstr("     @     @   @  @     @      @  @     @@@  @   @ @   @  @    \n");
+    addstr("     @     @   @  @     @   @@@@  @        @ @   @ @   @  @    \n");
+    addstr("     @     @  @@  @     @  @   @  @        @ @  @@ @  @@       \n");
+    addstr("     @@@@@  @@ @ @@@    @   @@@@ @@@   @@@@   @@ @  @@ @  @    \n");
+    addstr("                                                       @       \n");
+    addstr("                                                       @       \n");
     addstr("                                                               \n");
-    addstr("  @   @               @   @           @          @@@  @     @  \n");
-    addstr("  @   @               @@ @@           @           @   @     @  \n");
-    addstr("  @   @  @@@  @   @   @ @ @  @@@   @@@@  @@@      @  @@@    @  \n");
-    addstr("   @@@@ @   @ @   @   @   @     @ @   @ @   @     @   @     @  \n");
-    addstr("      @ @   @ @   @   @   @  @@@@ @   @ @@@@@     @   @     @  \n");
-    addstr("  @   @ @   @ @  @@   @   @ @   @ @   @ @         @   @  @     \n");
-    addstr("   @@@   @@@   @@ @   @   @  @@@@  @@@@  @@@     @@@   @@   @  \n");
-    addstr("                                                               \n");
-    addstr("     Congratulations, you have made it to the light of day!    \n");
+    addstr("     Jaga, la taı súq hîefa ja ke Neqmy búı jòı mîefea ja!     \n");
     standend();
-    addstr("\nYou have joined the elite ranks of those who have escaped the\n");
-    addstr("Dungeons of Doom alive.  You journey home and sell all your loot at\n");
-    addstr("a great profit and are admitted to the Fighters' Guild.\n");
-    mvaddstr(LINES - 1, 0, "--Press space to continue--");
+    addstr("\nLuı sha meaga súq tuq leısuoı lüı mıefea choaqfa hóa ke Doqjoq da.\n");
+    addstr("Saofa súq súqbo buedoaq na ru teqdoa súq sa tuq suqbo bomy da.\n");
+    addstr("Meashoe pó baq Soıche ga Gaqfuaı súq źe da.\n");
+    mvaddstr(LINES - 1, 0, "--Hupa súq shéalaıcıoq shou--");
     refresh();
     wait_for(' ');
     clear();
@@ -379,7 +380,7 @@ total_winner()
 	printw("%c) %5d  %s\n", obj->o_packch, worth, inv_name(obj, FALSE));
 	purse += worth;
     }
-    printw("   %5d  Gold Pieces          ", oldpurse);
+    printw("   %5d  hea eloa             ", oldpurse);
     refresh();
     score(purse, 2, ' ');
     my_exit(0);
@@ -396,11 +397,11 @@ killname(char monst, bool doart)
     char *sp;
     bool article;
     static struct h_list nlist[] = {
-	{'a',	"arrow",		TRUE},
-	{'b',	"bolt",			TRUE},
-	{'d',	"dart",			TRUE},
-	{'h',	"hypothermia",		FALSE},
-	{'s',	"starvation",		FALSE},
+	{'a',	"heruo",		TRUE},
+	{'b',	"loe",		TRUE},
+	{'d',	"jıeqbeaq",		TRUE},
+	{'h',	"tûaıkoa",		FALSE},
+	{'s',	"chûqcıa",		FALSE},
 	{'\0'}
     };
 
@@ -422,7 +423,7 @@ killname(char monst, bool doart)
 	    }
     }
     if (doart && article)
-	sprintf(prbuf, "a%s ", vowelstr(sp));
+	sprintf(prbuf, "sa ");
     else
 	prbuf[0] = '\0';
     strcat(prbuf, sp);
