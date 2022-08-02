@@ -24,7 +24,7 @@ ring_on()
     THING *obj;
     int ring;
 
-    obj = get_item("put on", RING);
+    obj = get_item("geısho", RING);
     /*
      * Make certain that it is somethings that we want to wear
      */
@@ -32,10 +32,7 @@ ring_on()
 	return;
     if (obj->o_type != RING)
     {
-	if (!terse)
-	    msg("it would be difficult to wrap that around a finger");
-	else
-	    msg("not a ring");
+	msg("Bu cheıbıu ní da.");
 	return;
     }
 
@@ -56,10 +53,7 @@ ring_on()
 	ring = RIGHT;
     else
     {
-	if (!terse)
-	    msg("you already have a ring on each hand");
-	else
-	    msg("wearing two");
+	msg("Bõq bı geı tushı suqbo muq sa cheıbıu da.");
 	return;
     }
     cur_ring[ring] = obj;
@@ -80,9 +74,7 @@ ring_on()
 	    break;
     }
 
-    if (!terse)
-	addmsg("you are now wearing ");
-    msg("%s (%c)", inv_name(obj, TRUE), obj->o_packch);
+    msg("Sha geı súq %s (%c) da.", inv_name(obj, TRUE), obj->o_packch);
 }
 
 /*
@@ -98,10 +90,7 @@ ring_off()
 
     if (cur_ring[LEFT] == NULL && cur_ring[RIGHT] == NULL)
     {
-	if (terse)
-	    msg("no rings");
-	else
-	    msg("you aren't wearing any rings");
+	msg("Geı súq sıa cheıbıu da.");
 	return;
     }
     else if (cur_ring[LEFT] == NULL)
@@ -115,11 +104,11 @@ ring_off()
     obj = cur_ring[ring];
     if (obj == NULL)
     {
-	msg("not wearing such a ring");
+	msg("Geı súq sıa nu cheıbıu da.");
 	return;
     }
     if (dropcheck(obj))
-	msg("was wearing %s(%c)", inv_name(obj, TRUE), obj->o_packch);
+	msg("Shaı geı súq %s (%c) da.", inv_name(obj, TRUE), obj->o_packch);
 }
 
 /*
@@ -133,21 +122,15 @@ gethand()
 
     for (;;)
     {
-	if (terse)
-	    msg("left or right ring? ");
-	else
-	    msg("left hand or right hand? ");
+	msg("Lıomuq rı sıaqmuq moq?");
 	if ((c = readchar()) == ESCAPE)
 	    return -1;
 	mpos = 0;
 	if (c == 'l' || c == 'L')
 	    return LEFT;
-	else if (c == 'r' || c == 'R')
+	else if (c == 's' || c == 'S')
 	    return RIGHT;
-	if (terse)
-	    msg("L or R");
-	else
-	    msg("please type L or R");
+	msg("Koe súq shú L ro shú S shou.");
     }
 }
 
