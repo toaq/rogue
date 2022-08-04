@@ -24,7 +24,7 @@
 void
 fix_stick(THING *cur)
 {
-    if (strcmp(ws_type[cur->o_which], "staff") == 0)
+    if (strcmp(ws_type[cur->o_which], "beaq") == 0)
 	strncpy(cur->o_damage,"2x3",sizeof(cur->o_damage));
     else
 	strncpy(cur->o_damage,"1x1",sizeof(cur->o_damage));
@@ -53,17 +53,17 @@ do_zap()
     char monster, oldch;
     static THING bolt;
 
-    if ((obj = get_item("zap with", STICK)) == NULL)
+    if ((obj = get_item("cara", STICK)) == NULL)
 	return;
     if (obj->o_type != STICK)
     {
 	after = FALSE;
-	msg("you can't zap with that!");
+	msg("Bu kıu cara ní da.");
 	return;
     }
     if (obj->o_charges == 0)
     {
-	msg("nothing happens");
+	msg("Faq sıa raı da.");
 	return;
     }
     switch (obj->o_which)
@@ -74,7 +74,7 @@ do_zap()
 	     */
 	    ws_info[WS_LIGHT].oi_know = TRUE;
 	    if (proom->r_flags & ISGONE)
-		msg("the corridor glows and then fades");
+		msg("Gıozıa rubıe rıu moy kíaogıu da.");
 	    else
 	    {
 		proom->r_flags &= ~ISDARK;
@@ -82,10 +82,7 @@ do_zap()
 		 * Light the room and put the player back up
 		 */
 		enter_room(&hero);
-		addmsg("the room is lit");
-		if (!terse)
-		    addmsg(" by a shimmering %s light", pick_color("blue"));
-		endmsg();
+		msg("Sho tı sa %s gıo kúe da.", pick_color("mıo"));
 	    }
 	when WS_DRAIN:
 	    /*
@@ -95,7 +92,7 @@ do_zap()
 	     */
 	    if (pstats.s_hpt < 2)
 	    {
-		msg("you are too weak to use it");
+		msg("Duı rue súq bòq chôq súq kóu da.");
 		return;
 	    }
 	    else
@@ -185,10 +182,7 @@ do_zap()
 	    if ((tp = moat(bolt.o_pos.y, bolt.o_pos.x)) != NULL
 		&& !save_throw(VS_MAGIC, tp))
 		    hit_monster(unc(bolt.o_pos), &bolt);
-	    else if (terse)
-		msg("missle vanishes");
-	    else
-		msg("the missle vanishes with a puff of smoke");
+	    else msg("Puaoshıy májısoaı da.");
 	when WS_HASTE_M:
 	case WS_SLOW_M:
 	    y = hero.y;
@@ -223,18 +217,18 @@ do_zap()
 	case WS_FIRE:
 	case WS_COLD:
 	    if (obj->o_which == WS_ELECT)
-		name = "bolt";
+		name = "seoqceoq";
 	    else if (obj->o_which == WS_FIRE)
-		name = "flame";
+		name = "loe";
 	    else
-		name = "ice";
+		name = "koasoaı";
 	    fire_bolt(&hero, &delta, name);
 	    ws_info[obj->o_which].oi_know = TRUE;
 	when WS_NOP:
 	    break;
 #ifdef MASTER
 	otherwise:
-	    msg("what a bizarre schtick!");
+	    msg("Jua ní beaq da.");
 #endif
     }
     obj->o_charges--;
@@ -272,7 +266,7 @@ drain()
 		*dp++ = mp;
     if ((cnt = (int)(dp - drainee)) == 0)
     {
-	msg("you have a tingling feeling");
+	msg("Uru súq da.");
 	return;
     }
     *dp = NULL;
@@ -349,7 +343,7 @@ fire_bolt(coord *start, coord *dir, char *name)
 		dir->y = -dir->y;
 		dir->x = -dir->x;
 		c1--;
-		msg("the %s bounces", name);
+		msg("Juka %s da.", name);
 		break;
 	    default:
 def:
@@ -364,10 +358,7 @@ def:
 			used = TRUE;
 			if (tp->t_type == 'D' && strcmp(name, "flame") == 0)
 			{
-			    addmsg("the flame bounces");
-			    if (!terse)
-				addmsg(" off the dragon");
-			    endmsg();
+			    msg("Juka lóe dáraqgoq da.");
 			}
 			else
 			    hit_monster(unc(pos), &bolt);
@@ -376,10 +367,7 @@ def:
 		    {
 			if (start == &hero)
 			    runto(&pos);
-			if (terse)
-			    msg("%s misses", name);
-			else
-			    msg("the %s whizzes past %s", name, set_mname(tp));
+			msg("Deabuaı %s %s da.", name, set_mname(tp));
 		    }
 		}
 		else if (hit_hero && ce(pos, hero))
@@ -396,13 +384,10 @@ def:
 				death(moat(start->y, start->x)->t_type);
 			}
 			used = TRUE;
-			if (terse)
-			    msg("the %s hits", name);
-			else
-			    msg("you are hit by the %s", name);
+			msg("Doka %s súq da.", name);
 		    }
 		    else
-			msg("the %s whizzes by you", name);
+			msg("Deabuaı %s súq da.", name);
 		}
 		mvaddch(pos.y, pos.x, dirch);
 		refresh();
@@ -426,6 +411,6 @@ charge_str(THING *obj)
     else if (terse)
 	sprintf(buf, " [%d]", obj->o_charges);
     else
-	sprintf(buf, " [%d charges]", obj->o_charges);
+	sprintf(buf, " [%d choqguo]", obj->o_charges);
     return buf;
 }
