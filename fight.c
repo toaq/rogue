@@ -22,7 +22,7 @@ char *h_names[] = {		/* strings for hitting */
 	"Taı dea ",
 	"Dea ",
 	"Hıao ",
-	"Zuydea ",
+	"Dea ",
 };
 
 char *m_names[] = {		/* strings for missing */
@@ -190,10 +190,7 @@ attack(THING *mp)
 		    player.t_flags &= ~ISRUN;
 		    if (!no_command)
 		    {
-			addmsg("you are frozen");
-			if (!terse)
-			    addmsg(" by the %s", mname);
-			endmsg();
+			msg("Tua %s shâı deq duy súq da.");
 		    }
 		    no_command += rnd(2) + 2;
 		    if (no_command > BORE_LEVEL)

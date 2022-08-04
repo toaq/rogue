@@ -32,15 +32,12 @@ read_scroll()
     THING *orig_obj;
     static coord mp;
 
-    obj = get_item("read", SCROLL);
+    obj = get_item("noaq", SCROLL);
     if (obj == NULL)
 	return;
     if (obj->o_type != SCROLL)
     {
-	if (!terse)
-	    msg("there is nothing on it to read");
-	else
-	    msg("nothing to read");
+	msg("Kaıte kóu sıa da.");
 	return;
     }
     /*
@@ -62,13 +59,13 @@ read_scroll()
 	     * Scroll of monster confusion.  Give him that power.
 	     */
 	    player.t_flags |= CANHUH;
-	    msg("your hands begin to glow %s", pick_color("red"));
+	    msg("Ceo gıozıa súqbo gumuq sa %s da.", pick_color("kıa"));
 	when S_ARMOR:
 	    if (cur_armor != NULL)
 	    {
 		cur_armor->o_arm--;
 		cur_armor->o_flags &= ~ISCURSED;
-		msg("your armor glows %s for a moment", pick_color("silver"));
+		msg("Pıka gıozıa súqbo leoqfuq sa %s da.", pick_color("mıalareo"));
 	    }
 	when S_HOLD:
 	    /*
@@ -89,17 +86,11 @@ read_scroll()
 			    }
 	    if (ch)
 	    {
-		addmsg("the monster");
-		if (ch > 1)
-		    addmsg("s around you");
-		addmsg(" freeze");
-		if (ch == 1)
-		    addmsg("s");
-		endmsg();
+		msg("Shaı duy ke ıoma rëı hóa súq da.");
 		scr_info[S_HOLD].oi_know = TRUE;
 	    }
 	    else
-		msg("you feel a strange sense of loss");
+		msg("Moe súq lûı buaq ja sa da.");
 	when S_SLEEP:
 	    /*
 	     * Scroll which makes you fall asleep
@@ -107,7 +98,7 @@ read_scroll()
 	    scr_info[S_SLEEP].oi_know = TRUE;
 	    no_command += rnd(SLEEPTIME) + 4;
 	    player.t_flags &= ~ISRUN;
-	    msg("you fall asleep");
+	    msg("Nuosho súq da.");
 	when S_CREATE:
 	    /*
 	     * Create a monster:
@@ -137,7 +128,7 @@ read_scroll()
 			}
 		    }
 	    if (i == 0)
-		msg("you hear a faint cry of anguish in the distance");
+		msg("Huogaı súq sa rue shoıse müıbo hóa jâq noı sa da.");
 	    else
 	    {
 		obj = new_item();
@@ -155,7 +146,7 @@ read_scroll()
 	     * Identify, let him figure something out
 	     */
 	    scr_info[obj->o_which].oi_know = TRUE;
-	    msg("this scroll is an %s scroll", scr_info[obj->o_which].oi_name);
+	    msg("Majıpeq %s ní peq da.", scr_info[obj->o_which].oi_name);
 	    whatis(TRUE, id_type[obj->o_which]);
 	}
 	when S_MAP:
@@ -163,7 +154,7 @@ read_scroll()
 	     * Scroll of magic mapping.
 	     */
 	    scr_info[S_MAP].oi_know = TRUE;
-	    msg("oh, now this scroll has a map on it");
+	    msg("Obe, sha kaıte ní peq sa guaqfuaq da.");
 	    /*
 	     * take all the things we want to keep hidden out of the window
 	     */
@@ -243,10 +234,10 @@ def:
 	    if (ch)
 	    {
 		scr_info[S_FDET].oi_know = TRUE;
-		show_win("Your nose tingles and you smell food.--More--");
+			show_win("Uru súqbo shıqhua jòı shîqgaı súq tî baq haq hı da.--Sıe--");
 	    }
 	    else
-		msg("your nose tingles");
+		msg("Uru súqbo shıqhua da.");
 	when S_TELEP:
 	    /*
 	     * Scroll of teleportation:
@@ -260,7 +251,7 @@ def:
 	    }
 	when S_ENCH:
 	    if (cur_weapon == NULL || cur_weapon->o_type != WEAPON)
-		msg("you feel a strange sense of loss");
+		msg("Moe súq lûı buaq ja sa da.");
 	    else
 	    {
 		cur_weapon->o_flags &= ~ISCURSED;
@@ -268,41 +259,39 @@ def:
 		    cur_weapon->o_hplus++;
 		else
 		    cur_weapon->o_dplus++;
-		msg("your %s glows %s for a moment",
-		    weap_info[cur_weapon->o_which].oi_name, pick_color("blue"));
+		msg("Pıka gıozıa súqbo %s sa %s da.",
+		    weap_info[cur_weapon->o_which].oi_name, pick_color("mıo"));
 	    }
 	when S_SCARE:
 	    /*
 	     * Reading it is a mistake and produces laughter at her
 	     * poor boo boo.
 	     */
-	    msg("you hear maniacal laughter in the distance");
+	    msg("Huogaı súq hîaı tĩjao sa shaohuı da.");
 	when S_REMOVE:
 	    uncurse(cur_armor);
 	    uncurse(cur_weapon);
 	    uncurse(cur_ring[LEFT]);
 	    uncurse(cur_ring[RIGHT]);
-	    msg(choose_str("you feel in touch with the Universal Onenes",
-			   "you feel as if somebody is watching over you"));
+	    msg("Moe súq kîaı sa paıruo súq da.");
 	when S_AGGR:
 	    /*
 	     * This scroll aggravates all the monsters on the current
 	     * level and sets them running towards the hero
 	     */
 	    aggravate();
-	    msg("you hear a high pitched humming noise");
+	    msg("Huogaı súq sa beocıa laqgea.");
 	when S_PROTECT:
 	    if (cur_armor != NULL)
 	    {
 		cur_armor->o_flags |= ISPROT;
-		msg("your armor is covered by a shimmering %s shield",
-		    pick_color("gold"));
+		msg("Tıe sa zıazıa %s leoqboe súqbo leoqfuq da.", pick_color("eloareo"));
 	    }
 	    else
-		msg("you feel a strange sense of loss");
+		msg("Moe súq lûı buaq ja sa da.");
 #ifdef MASTER
 	otherwise:
-	    msg("what a puzzling scroll!");
+	    msg("Jua ní majıpeq da.");
 	    return;
 #endif
     }
