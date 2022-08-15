@@ -34,9 +34,9 @@ inv_name(THING *obj, bool drop)
     switch (obj->o_type)
     {
         case POTION:
-	    nameit(obj, "potion", p_colors[which], &pot_info[which], nullstr);
+	    nameit(obj, "majınao", p_colors[which], &pot_info[which], nullstr);
 	when RING:
-	    nameit(obj, "ring", r_stones[which], &ring_info[which], ring_num);
+	    nameit(obj, "cheıbıu", r_stones[which], &ring_info[which], ring_num);
 	when STICK:
 	    nameit(obj, ws_type[which], ws_made[which], &ws_info[which], charge_str);
 	when SCROLL:
@@ -71,20 +71,18 @@ inv_name(THING *obj, bool drop)
 	when WEAPON:
 	    sp = weap_info[which].oi_name;
 	    if (obj->o_count > 1)
-		sprintf(pb, "%d ", obj->o_count);
+		sprintf(pb, "sa %d ", obj->o_count);
 	    else
-		sprintf(pb, "A%s ", vowelstr(sp));
+		sprintf(pb, "sa shı ");
 	    pb = &prbuf[strlen(prbuf)];
 	    if (obj->o_flags & ISKNOW)
 		sprintf(pb, "%s %s", num(obj->o_hplus,obj->o_dplus,WEAPON), sp);
 	    else
 		sprintf(pb, "%s", sp);
-	    if (obj->o_count > 1)
-		strcat(pb, "s");
 	    if (obj->o_label != NULL)
 	    {
 		pb = &prbuf[strlen(prbuf)];
-		sprintf(pb, " called %s", obj->o_label);
+		sprintf(pb, " chüa shú «%s» hóa", obj->o_label);
 	    }
 	when ARMOR:
 	    sp = arm_info[which].oi_name;
@@ -92,8 +90,6 @@ inv_name(THING *obj, bool drop)
 	    {
 		sprintf(pb, "%s %s [",
 		    num(a_class[which] - obj->o_arm, 0, ARMOR), sp);
-		if (!terse)
-		    strcat(pb, "protection ");
 		pb = &prbuf[strlen(prbuf)];
 		sprintf(pb, "%d]", 10 - obj->o_arm);
 	    }
@@ -102,28 +98,28 @@ inv_name(THING *obj, bool drop)
 	    if (obj->o_label != NULL)
 	    {
 		pb = &prbuf[strlen(prbuf)];
-		sprintf(pb, " called %s", obj->o_label);
+		sprintf(pb, " chüa shú «%s» hóa", obj->o_label);
 	    }
 	when AMULET:
-	    strcpy(pb, "The Amulet of Yendor");
+	    strcpy(pb, "pomı Jendory ga neqmy");
 	when GOLD:
-	    sprintf(prbuf, "%d Gold pieces", obj->o_goldval);
+	    sprintf(prbuf, "%d hea eloa", obj->o_goldval);
 #ifdef MASTER
 	otherwise:
-	    debug("Picked up something funny %s", unctrl(obj->o_type));
-	    sprintf(pb, "Something bizarre %s", unctrl(obj->o_type));
+	    debug("heaq jua %s", unctrl(obj->o_type));
+	    sprintf(pb, "sa jua %s", unctrl(obj->o_type));
 #endif
     }
     if (inv_describe)
     {
 	if (obj == cur_armor)
-	    strcat(pb, " (being worn)");
+	    strcat(pb, " (gëı súq hóa)");
 	if (obj == cur_weapon)
-	    strcat(pb, " (weapon in hand)");
+	    strcat(pb, " (chöq súq hóa)");
 	if (obj == cur_ring[LEFT])
-	    strcat(pb, " (on left hand)");
+	    strcat(pb, " (rëı hóa líomuq)");
 	else if (obj == cur_ring[RIGHT])
-	    strcat(pb, " (on right hand)");
+	    strcat(pb, " (rëı hóa síaqmuq)");
     }
     if (drop && isupper(prbuf[0]))
 	prbuf[0] = (char) tolower(prbuf[0]);
@@ -148,10 +144,10 @@ drop()
     if (ch != FLOOR && ch != PASSAGE)
     {
 	after = FALSE;
-	msg("there is something there already");
+	msg("Boq tî sa meaheo ní da");
 	return;
     }
-    if ((obj = get_item("drop", 0)) == NULL)
+    if ((obj = get_item("heaqshaı", 0)) == NULL)
 	return;
     if (!dropcheck(obj))
 	return;
@@ -165,7 +161,7 @@ drop()
     obj->o_pos = hero;
     if (obj->o_type == AMULET)
 	amulet = FALSE;
-    msg("dropped %s", inv_name(obj, TRUE));
+    msg("Heaqshaı súq %s da.", inv_name(obj, TRUE));
 }
 
 /*
@@ -182,7 +178,7 @@ dropcheck(THING *obj)
 	    return TRUE;
     if (obj->o_flags & ISCURSED)
     {
-	msg("you can't.  It appears to be cursed");
+	msg("Boq sa ráy da.  Du huımajıbo kóu dâ.");
 	return FALSE;
     }
     if (obj == cur_weapon)
@@ -291,7 +287,7 @@ new_thing()
 	    fix_stick(cur);
 #ifdef MASTER
 	otherwise:
-	    debug("Picked a bad kind of object");
+	    debug("huı rıoq");
 	    wait_for(' ');
 #endif
     }
@@ -347,12 +343,7 @@ discovered()
 
     do {
 	disc_list = FALSE;
-	if (!terse)
-	    addmsg("for ");
-	addmsg("what type");
-	if (!terse)
-	    addmsg(" of object do you want a list");
-	msg("? (* for all)");
+	msg("Hı rıoq bı shao súq mêkao sa hóq moq? (* = tuq)");
 	ch = readchar();
 	switch (ch)
 	{
@@ -367,10 +358,7 @@ discovered()
 		disc_list = TRUE;
 		break;
 	    default:
-		if (terse)
-		    msg("Not a type");
-		else
-		    msg("Please type one of %c%c%c%c (ESCAPE to quit)", POTION, SCROLL, RING, STICK);
+		msg("Koe súq sa mea %c%c%c%c shou (ESCAPE = shaı)", POTION, SCROLL, RING, STICK);
 	}
     } while (!disc_list);
     if (ch == '*')
@@ -474,7 +462,7 @@ add_line(char *fmt, char *arg)
 {
     WINDOW *tw, *sw;
     int x, y;
-    char *prompt = "--Press space to continue--";
+    char *prompt = "--Hupa súq shéalaıcıoq shou--";
     static int maxlen = -1;
 
     if (line_cnt == 0)
@@ -588,23 +576,19 @@ end_line()
 char *
 nothing(char type)
 {
-    char *sp, *tystr = NULL;
+    char *tystr = NULL;
 
-    if (terse)
-	sprintf(prbuf, "Nothing");
-    else
-	sprintf(prbuf, "Haven't discovered anything");
     if (type != '*')
     {
-	sp = &prbuf[strlen(prbuf)];
 	switch (type)
 	{
 	    case POTION: tystr = "majınao";
 	    when SCROLL: tystr = "majıpeq";
 	    when RING: tystr = "cheıbıu";
 	    when STICK: tystr = "majıbeaq";
+	    default: tystr = "majı";
 	}
-	sprintf(sp, " about any %ss", tystr);
+	sprintf(prbuf, "Luı sho raqdua súq sıa %s da.", tystr);
     }
     return prbuf;
 }
@@ -623,19 +607,19 @@ nameit(THING *obj, char *type, char *which, struct obj_info *op,
     if (op->oi_know || op->oi_guess)
     {
 	if (obj->o_count == 1)
-	    sprintf(prbuf, "A %s ", type);
+	    sprintf(prbuf, "sa shı %s ", type);
 	else
-	    sprintf(prbuf, "%d %ss ", obj->o_count, type);
+	    sprintf(prbuf, "sa %d %s ", obj->o_count, type);
 	pb = &prbuf[strlen(prbuf)];
 	if (op->oi_know)
-	    sprintf(pb, "of %s%s(%s)", op->oi_name, (*prfunc)(obj), which);
+	    sprintf(pb, "%s%s(%s)", op->oi_name, (*prfunc)(obj), which);
 	else if (op->oi_guess)
-	    sprintf(pb, "called %s%s(%s)", op->oi_guess, (*prfunc)(obj), which);
+	    sprintf(pb, "chüa «%s» hóa %s(%s)", op->oi_guess, (*prfunc)(obj), which);
     }
     else if (obj->o_count == 1)
-	sprintf(prbuf, "A%s %s %s", vowelstr(which), which, type);
+	sprintf(prbuf, "sa shı %s %s", which, type);
     else
-	sprintf(prbuf, "%d %s %ss", obj->o_count, which, type);
+	sprintf(prbuf, "sa %d %s %s", obj->o_count, which, type);
 }
 
 /*
@@ -660,12 +644,7 @@ pr_list()
 {
     int ch;
 
-    if (!terse)
-	addmsg("for ");
-    addmsg("what type");
-    if (!terse)
-	addmsg(" of object do you want a list");
-    msg("? ");
+    msg("Hı rıoq bı shao súq mêkao sa hóq moq?");
     ch = readchar();
     switch (ch)
     {
