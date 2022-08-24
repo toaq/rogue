@@ -31,7 +31,7 @@ static char *rip[] = {
 "                  /                  \\\n",
 "                  |                  |\n",
 "                  |                  |\n",
-"                  |    müaqtua ku    |\n",
+"                  |    muaqtua ku    |\n",
 "                  |                  |\n",
 "                  |      hóa da      |\n",
 "                 *|     *  *  *      | *\n",
@@ -72,7 +72,7 @@ score(int amount, int flags, char monst)
 #endif
         )
     {
-	mvaddstr(LINES - 1, 0 , "[Press return to continue]");
+	mvaddstr(LINES - 1, 0 , "[Hupa súq níqgıucıoq shou]");
         refresh();
         wgetnstr(stdscr,prbuf,80);
  	endwin();
@@ -159,18 +159,18 @@ score(int amount, int flags, char monst)
      */
     if (flags != -1)
 	putchar('\n');
-    printf("Top %s %s:\n", Numname, allscore ? "Scores" : "Rogueists");
-    printf("   Score Name\n");
+    printf("Soq %s %s:\n", Numname, allscore ? "Guo Luaqtaı" : "Luaqtaı");
+    printf("   Taıne  Chua\n");
     for (scp = top_ten; scp < endp; scp++)
     {
 	if (scp->sc_score) {
 	    if (sc2 == scp)
             md_raw_standout();
-	    printf("%2d %5d %s: %s on level %d", (int) (scp - top_ten + 1),
+	    printf("%2d %6d %s: %s tì ke %dko", (int) (scp - top_ten + 1),
 		scp->sc_score, scp->sc_name, reason[scp->sc_flags],
 		scp->sc_level);
 	    if (scp->sc_flags == 0 || scp->sc_flags == 3)
-		printf(" by %s", killname((char) scp->sc_monster, TRUE));
+		printf(" lũ toı sa %s", killname((char) scp->sc_monster, TRUE));
 #ifdef MASTER
 	    if (prflags == 1)
 	    {
@@ -239,11 +239,11 @@ death(char monst)
     killer = killname(monst, FALSE);
     if (!tombstone)
     {
-	mvprintw(LINES - 2, 0, "Killed by ");
+	mvprintw(LINES - 2, 0, "Muaqtua ");
 	killer = killname(monst, FALSE);
 	if (monst != 's' && monst != 'h')
-	    printw("a%s ", vowelstr(killer));
-	printw("%s with %d gold", killer, purse);
+	    printw("sa ");
+	printw("%s hó da (ju %d éloahea da)", killer, purse);
     }
     else
     {
@@ -272,7 +272,7 @@ death(char monst)
     fflush(stdout);
     (void) fgets(prbuf,10,stdin);
     my_exit(0);
-
+}
 
 /*
  * center:

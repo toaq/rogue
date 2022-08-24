@@ -53,7 +53,7 @@
 
 # ifndef NUMSCORES
 #	define	NUMSCORES	10
-#	define	NUMNAME		"Ten"
+#	define	NUMNAME		"Heı"
 # endif
 
 unsigned int numscores = NUMSCORES;
