@@ -29,22 +29,22 @@ whatis(bool insist, int type)
 
     if (pack == NULL)
     {
-	msg("you don't have anything in your pack to identify");
+	msg("Kıu gaımuo sıa hëaq súq hóa da.");
 	return;
     }
 
     for (;;)
     {
-	obj = get_item("identify", type);
+	obj = get_item("gaımuo", type);
 	if (insist)
 	{
 	    if (n_objs == 0)
 		return;
 	    else if (obj == NULL)
-		msg("you must identify something");
+		msg("Koe súq sa shı shou.");
 	    else if (type && obj->o_type != type &&
 	       !(type == R_OR_S && (obj->o_type == RING || obj->o_type == STICK)) )
-		    msg("you must identify a %s", type_name(type));
+		    msg("Kou súq sa %s shou.", type_name(type));
 	    else
 		break;
 	}
@@ -101,14 +101,14 @@ type_name(int type)
 {
     struct h_list *hp;
     static struct h_list tlist[] = {
-	{POTION, "potion",		FALSE},
-	{SCROLL, "scroll",		FALSE},
-	{FOOD,	 "food",		FALSE},
-	{R_OR_S, "ring, wand or staff",	FALSE},
-	{RING,	 "ring",		FALSE},
-	{STICK,	 "wand or staff",	FALSE},
-	{WEAPON, "weapon",		FALSE},
-	{ARMOR,	 "suit of armor",	FALSE},
+	{POTION, "majınao",	FALSE},
+	{SCROLL, "majıpeq",	FALSE},
+	{FOOD,	 "haq",		FALSE},
+	{R_OR_S, "majıchuo",	FALSE},
+	{RING,	 "cheıbıu",	FALSE},
+	{STICK,	 "majıbeaq",	FALSE},
+	{WEAPON, "hıaochuo",	FALSE},
+	{ARMOR,	 "leoqfuq",	FALSE},
     };
 
     for (hp = tlist; hp->h_ch; hp++)
@@ -131,17 +131,17 @@ create_obj()
     char ch, bless;
 
     obj = new_item();
-    msg("type of item: ");
+    msg("rıoq: ");
     obj->o_type = readchar();
     mpos = 0;
-    msg("which %c do you want? (0-f)", obj->o_type);
+    msg("shao bo súq hı %c moq? (0-f)", obj->o_type);
     obj->o_which = (isdigit((ch = readchar())) ? ch - '0' : ch - 'a' + 10);
     obj->o_group = 0;
     obj->o_count = 1;
     mpos = 0;
     if (obj->o_type == WEAPON || obj->o_type == ARMOR)
     {
-	msg("blessing? (+,-,n)");
+	msg("gımajı? (+,-,n)");
 	bless = readchar();
 	mpos = 0;
 	if (bless == '-')
@@ -170,7 +170,7 @@ create_obj()
 	    case R_ADDSTR:
 	    case R_ADDHIT:
 	    case R_ADDDAM:
-		msg("blessing? (+,-,n)");
+		msg("gımajı? (+,-,n)");
 		bless = readchar();
 		mpos = 0;
 		if (bless == '-')
@@ -184,7 +184,7 @@ create_obj()
 	fix_stick(obj);
     else if (obj->o_type == GOLD)
     {
-	msg("how much?");
+	msg("tıopuı?");
 	get_num(&obj->o_goldval, stdscr);
     }
     add_pack(obj, FALSE);
@@ -241,7 +241,7 @@ passwd()
     char *sp, c;
     static char buf[MAXSTR];
 
-    msg("wizard's Password:");
+    msg("po mí wizard ga shuıtoa:");
     mpos = 0;
     sp = buf;
     while ((c = readchar()) != '\n' && c != '\r' && c != ESCAPE)
@@ -279,6 +279,6 @@ show_map()
 	    if (!real)
 		wstandend(hw);
 	}
-    show_win("---More (level map)---");
+    show_win("---Sıe (paq guaqfuaq)---");
 }
 #endif
