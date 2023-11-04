@@ -34,7 +34,7 @@ main(int argc, char **argv, char **envp)
      * Check to see if he is a wizard
      */
     if (argc >= 2 && argv[1][0] == '\0')
-	if (strcmp(PASSWD, md_crypt(md_getpass("Po mí wızard ga shuıtoa hı moq? "), "mT")) == 0)
+	if (strcmp(PASSWD, md_crypt(md_getpass("Shuıtoa po mí wızard kú hí móq? "), "mT")) == 0)
 	{
 	    wizard = TRUE;
 	    player.t_flags |= SEEMONST;
@@ -68,9 +68,9 @@ main(int argc, char **argv, char **envp)
 
     open_score();
 
-	/* 
-     * Drop setuid/setgid after opening the scoreboard file. 
-     */ 
+	/*
+     * Drop setuid/setgid after opening the scoreboard file.
+     */
 
     md_normaluser();
 
@@ -111,7 +111,7 @@ main(int argc, char **argv, char **envp)
 	printf("Hello %s, welcome to dungeon #%d", whoami, dnum);
     else
 #endif
-	printf("Jadı hu mí %s, lao súq bâı jí baq doqjoq bâ...", whoami);
+	printf("Jadı, hóı mí %s, lao súq, ꝡä baı jí báq doqjoq ba...", whoami);
     fflush(stdout);
 
     initscr();				/* Start up cursor package */
@@ -128,7 +128,7 @@ main(int argc, char **argv, char **envp)
      */
     if (LINES < NUMLINES || COLS < NUMCOLS)
     {
-	printf("\nKuaq sheo ka, duaı huaq sao jíoqchuao baq po %dx%d da.\n", NUMLINES, NUMCOLS);
+	printf("\nKushe, duaı hạsao jíoqchuao báq po %dx%d da.\n", NUMLINES, NUMCOLS);
 	endwin();
 	my_exit(1);
     }
@@ -194,7 +194,7 @@ rnd(int range)
  * roll:
  *	Roll a number of dice
  */
-int 
+int
 roll(int number, int sides)
 {
     int dtotal = 0;
@@ -301,12 +301,12 @@ quit(int sig)
     if (!q_comm)
 	mpos = 0;
     getyx(curscr, oy, ox);
-    msg("Ma shaotaq shaı luaq súq moq? (n/z)");
+    msg("Ma shao shaı luaq súq moq? (n/z)");
     if (readchar() == 'n')
     {
 	signal(SIGINT, leave);
 	clear();
-	mvprintw(LINES - 2, 0, "Luı shâı súq pòı heaq sa %d nuaıhea da.", purse);
+	mvprintw(LINES - 2, 0, "Luı shaı súq hêaq sá nuaıhea %d da.", purse);
 	move(LINES - 1, 0);
 	refresh();
 	score(purse, 1, 0);
@@ -373,7 +373,7 @@ shell()
      */
     md_shellescape();
 
-    printf("\n[Hupa súq níqgıucıoq shou]");
+    printf("\n[Dem súq níqgıucıoq doa]");
     fflush(stdout);
     noecho();
     raw();

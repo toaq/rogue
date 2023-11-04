@@ -107,7 +107,7 @@ fight(coord *mp, THING *weap, bool thrown)
 	    player.t_flags &= ~CANHUH;
 	    endmsg();
 	    has_hit = FALSE;
-	    msg("Shaı gîozıa súqbo muq baq %s da.", pick_color("kıa"));
+	    msg("Shaı, ꝡä gıozıa múq suqbo báq %s da.", pick_color("kıa"));
 	}
 	if (tp->t_stats.s_hpt <= 0)
 	    killed(tp, TRUE);
@@ -190,7 +190,7 @@ attack(THING *mp)
 		    player.t_flags &= ~ISRUN;
 		    if (!no_command)
 		    {
-			msg("Tua %s shâı deq duy súq da.");
+			msg("Tua %s, ꝡä shaı deq gıam súq da.");
 		    }
 		    no_command += rnd(2) + 2;
 		    if (no_command > BORE_LEVEL)
@@ -204,11 +204,11 @@ attack(THING *mp)
 			if (!ISWEARING(R_SUSTSTR))
 			{
 			    chg_str(-1);
-			    msg("Nıoqjıaı %s súqbo shıaq cà tûaırue súq da.", mp->t_flags & MENTIONED ? "hó" : "sa");
+			    msg("Nıoqjıaı %s shíaq suqbo câ, ꝡä tuaırue súq da.", mp->t_flags & MENTIONED ? "hó" : "sá");
 			}
 			else if (!to_death)
 			{
-			    msg("Nıoqjıaı %s súqbo shıaq cà sıa da.", mp->t_flags & MENTIONED ? "hó" : "sa");
+			    msg("Nıoqjıaı %s shíaq suqbo câsıa da.", mp->t_flags & MENTIONED ? "hó" : "sá");
 			}
 		    }
 		when 'W':
@@ -268,7 +268,7 @@ attack(THING *mp)
 		    remove_mon(&mp->t_pos, mp, FALSE);
                     mp=NULL;
 		    if (purse != lastpurse)
-			msg("Gaı súq lûı dıa lıu súqbo nuaıheq da.");
+			msg("Gaı súq, ꝡä luı dıa lıu núaıheq suqbo da.");
 		}
 		when 'N':
 		{
@@ -290,7 +290,7 @@ attack(THING *mp)
 			remove_mon(&mp->t_pos, moat(mp->t_pos.y, mp->t_pos.x), FALSE);
                         mp=NULL;
 			leave_pack(steal, FALSE, FALSE);
-			msg("Bonua hó %s da!", inv_name(steal, TRUE));
+			msg("Nua hó súq %s da!", inv_name(steal, TRUE));
 			discard(steal);
 		    }
 		}
@@ -361,10 +361,10 @@ set_mname(THING *tp)
 {
     int ch;
     char *mname;
-    static char tbuf[MAXSTR] = { 's', 'a', ' ' };
+    static char tbuf[MAXSTR] = "sá ";
 
     if (!see_monst(tp) && !on(player, SEEMONST))
-	return "sa raı";
+	return "sá raı";
     else if (on(player, ISHALU))
     {
 	move(tp->t_pos.y, tp->t_pos.x);
@@ -505,7 +505,7 @@ prname(char *mname, bool upper)
 
     *tbuf = '\0';
     if (mname == 0)
-	strcpy(tbuf, "súq"); 
+	strcpy(tbuf, "súq");
     else
 	strcpy(tbuf, mname);
     if (upper)
@@ -523,7 +523,7 @@ thunk(THING *weap, char *mname, bool noend)
     if (to_death)
 	return;
     if (weap->o_type == WEAPON)
-	addmsg("Doka ke %s ", weap_info[weap->o_which].oi_name);
+	addmsg("Doka ké %s ", weap_info[weap->o_which].oi_name);
     else
 	addmsg("Doka súqbo ");
     addmsg("%s da.", mname);
@@ -580,7 +580,7 @@ bounce(THING *weap, char *mname, bool noend)
     if (to_death)
 	return;
     if (weap->o_type == WEAPON)
-	addmsg("Bu fuo ke %s ", weap_info[weap->o_which].oi_name);
+	addmsg("Bu fuo ké %s ", weap_info[weap->o_which].oi_name);
     else
 	addmsg("Bu fuo súqbo ");
     addmsg(mname);

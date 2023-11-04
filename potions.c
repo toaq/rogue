@@ -26,10 +26,10 @@ static PACT p_actions[] =
 {
 	{ ISHUH,	unconfuse,	HUHDURATION,	/* P_CONFUSE */
 		"A, jaqbeı jua ní gaıse da!",
-		"Oaı, faq hı raı moq? É? Hıa moq?" },
+		"Oaı, faq hí raı moq? Em? Hıa móq?" },
 	{ ISHALU,	come_down,	SEEDURATION,	/* P_LSD */
-		"Obe, sha kaqjeo ruajua tu da!",
-		"Obe, sha kaqjeo ruajua tu da!" },
+		"Obe, sha kaq'ıq ruajua tú da!",
+		"Obe, sha kaq'ıq ruajua tú da!" },
 	{ 0,		NULL,	0 },			/* P_POISON */
 	{ 0,		NULL,	0 },			/* P_STRENGTH */
 	{ CANSEE,	unsee,	SEEDURATION,		/* P_SEEINVIS */
@@ -43,7 +43,7 @@ static PACT p_actions[] =
 	{ 0,		NULL,	0 },			/* P_HASTE */
 	{ 0,		NULL,	0 },			/* P_RESTORE */
 	{ ISBLIND,	sight,	SEEDURATION,		/* P_BLIND */
-		"A, hecy!  Sha moy tu raı da!  Soa ba!",
+		"A, hece!  Sha moku tú raı da!  Soa sá ba!",
 		"Eka sho kaqdeqbu súq da." },
 	{ ISLEVIT,	land,	HEALTIME,		/* P_LEVIT */
 		"Obe!  Rara lıaı súq río da!",
@@ -89,7 +89,7 @@ quaff()
 	when P_POISON:
 	    pot_info[P_POISON].oi_know = TRUE;
 	    if (ISWEARING(R_SUSTSTR))
-		msg("Dãqmoa bı jeojuı bıa súq da.");
+		msg("Iqjuı bıa súq jîm da.");
 	    else
 	    {
 		chg_str(-(rnd(3) + 1));
@@ -105,13 +105,13 @@ quaff()
 	when P_STRENGTH:
 	    pot_info[P_STRENGTH].oi_know = TRUE;
 	    chg_str(1);
-	    msg("Taqgaı jeaq tuaıcaı súq da.  Jaqbeı moaı súqbo duohua da!");
+	    msg("Taqgaı jeaq tuaıcaı súq da.  Jaqbeı moaı dúohua suqbo ꝡeı!");
 	when P_MFIND:
 	    player.t_flags |= SEEMONST;
 	    fuse((void(*)())turn_see, TRUE, HUHDURATION, AFTER);
 	    if (!turn_see(FALSE))
-		msg("Daqnuı taqgaı súq sa %s, rubıe bı shıy tá da.",
-		    choose_str("juabu", "jua"));
+		msg("Taqgaı jîm súq sá %s, rúbıe shıao tá da.",
+		    choose_str("cem", "jua"));
 	when P_TFIND:
 	    /*
 	     * Potion of magic detection.  Show the potions and scrolls
@@ -146,11 +146,11 @@ quaff()
 	    if (show)
 	    {
 		pot_info[P_TFIND].oi_know = TRUE;
-		show_win("Gaı súq tî sa majı ní me kua da.--Sıe--");
+		show_win("Gaı súq, ꝡä tı sá majı ní kuame da.--Sıe--");
 	    }
 	    else
-		msg("Daqnuı taqgaı súq sa %s, rubıe bı shıy tá da.",
-		    choose_str("juabu", "jua"));
+		msg("Taqgaı jîm súq sá %s, rúbıe shıao tá da.",
+		    choose_str("cem", "jua"));
 	when P_LSD:
 	    if (!trip)
 	    {
@@ -161,7 +161,7 @@ quaff()
 	    }
 	    do_pot(P_LSD, TRUE);
 	when P_SEEINVIS:
-	    sprintf(prbuf, "Noqsıu ní majinao baq po baq %s ga zeonao da.", fruit);
+	    sprintf(prbuf, "Noqsıu ní nuımchaı báq zeonao bẹ%s da.", fruit);
 	    show = on(player, CANSEE);
 	    do_pot(P_SEEINVIS, FALSE);
 	    if (!show)
@@ -198,14 +198,14 @@ quaff()
 		add_str(&pstats.s_str, cur_ring[LEFT]->o_arm);
 	    if (ISRING(RIGHT, R_ADDSTR))
 		add_str(&pstats.s_str, cur_ring[RIGHT]->o_arm);
-	    msg("Obe, noqgı ní da.  Sha foaqloq súqbo tuaı da.");
+	    msg("Obe, noqgı ní da.  Sha foaqloq túaı suqbo da.");
 	when P_BLIND:
 	    do_pot(P_BLIND, TRUE);
 	when P_LEVIT:
 	    do_pot(P_LEVIT, TRUE);
 #ifdef MASTER
 	otherwise:
-	    msg("Jaq jua ní majınao da!");
+	    msg("Jaq jua ní nuımchaı da!");
 	    return;
 #endif
     }

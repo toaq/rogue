@@ -40,25 +40,25 @@ typedef struct optstruct	OPTION;
 void	pr_optname(OPTION *op);
 
 OPTION	optlist[] = {
-    {"terse",	 "He huaq doq baq kaıse",
+    {"terse",	 "He doq báq kaıse",
 		 &terse,	put_bool,	get_bool	},
-    {"flush",	 "He casıa kêakaı há sa puq rào sa soıtue",
+    {"flush",	 "He casıa, ꝡä keakaı há sá puq râo báq soıtue",
 		 &fight_flush,	put_bool,	get_bool	},
-    {"jump",	 "He pıka jâra há",
+    {"jump",	 "He pıka, ꝡä jara há",
 		 &jump,		put_bool,	get_bool	},
-    {"seefloor", "Kaqkıu baq gıotı deaq",
+    {"seefloor", "Kaqkıu báq deaq gıotı",
 		 &see_floor,	put_bool,	get_sf		},
-    {"passgo",	"He tıeqfa há baq tıeqbea",
+    {"passgo",	"He tıeqfa há báq tıeqbea",
 		 &passgo,	put_bool,	get_bool	},
-    {"tombstone", "Kaqgaı há sa muaqpıo hè mûaqsho áq",
+    {"tombstone", "Kaqgaı há sá muaqpıo hê, ꝡä muaqsho áq",
 		 &tombstone,	put_bool,	get_bool	},
-    {"inven",	"Cha hı hâo héaqshuo",
+    {"inven",	"Teı hí héaqshuo",
 		 &inv_type,	put_inv_t,	get_inv_t	},
-    {"name",	 "Chua hı ke luaq",
+    {"name",	 "Chua hí ké luaq",
 		 whoami,	put_str,	get_str		},
-    {"fruit",	 "Chua hı baq zeo",
+    {"fruit",	 "Chua hí báq zeo",
 		 fruit,		put_str,	get_str		},
-    {"file",	 "Chua hı baq luaqchukao",
+    {"file",	 "Chua hí báq luaqchukao",
 		 file_name,	put_str,	get_str		}
 };
 
@@ -111,7 +111,7 @@ option()
      * Switch back to original screen
      */
     wmove(hw, LINES - 1, 0);
-    waddstr(hw, "--Hupa súq shéalaıcıoq shou--");
+    waddstr(hw, "--Dem súq shéalaıcıoq doa--");
     wrefresh(hw);
     wait_for(' ');
     clearok(curscr, TRUE);
@@ -138,7 +138,7 @@ pr_optname(OPTION *op)
 void
 put_bool(void *b)
 {
-    waddstr(hw, *(bool *) b ? "jẽo" : "bũ");
+    waddstr(hw, *(bool *) b ? "jeo" : "bu");
 }
 
 /*
@@ -176,8 +176,8 @@ get_bool(void *vp, WINDOW *win)
 
     op_bad = TRUE;
     getyx(win, oy, ox);
-    waddstr(win, *bp ? "jẽo" : "bũ");
-    while (op_bad)	
+    waddstr(win, *bp ? "jeo" : "bu");
+    while (op_bad)
     {
 	wmove(win, oy, ox);
 	wrefresh(win);
@@ -207,7 +207,7 @@ get_bool(void *vp, WINDOW *win)
 	}
     }
     wmove(win, oy, ox);
-    waddstr(win, *bp ? "jẽo" : "bũ");
+    waddstr(win, *bp ? "jeo" : "bu");
     waddch(win, '\n');
     return NORM;
 }
@@ -331,7 +331,7 @@ get_inv_t(void *vp, WINDOW *win)
     op_bad = TRUE;
     getyx(win, oy, ox);
     waddstr(win, inv_t_name[*ip]);
-    while (op_bad)	
+    while (op_bad)
     {
 	wmove(win, oy, ox);
 	wrefresh(win);
@@ -368,7 +368,7 @@ get_inv_t(void *vp, WINDOW *win)
     mvwprintw(win, oy, ox, "%s\n", inv_t_name[*ip]);
     return NORM;
 }
-	
+
 
 #ifdef MASTER
 /*

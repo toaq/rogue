@@ -159,8 +159,8 @@ wake_monster(int y, int x)
 	msg("can't find monster in wake_monster");
 #else
     tp = moat(y, x);
-    if (tp == NULL) 	 	 
-	endwin(), abort(); 
+    if (tp == NULL)
+	endwin(), abort();
 #endif
     ch = tp->t_type;
     /*
@@ -188,7 +188,7 @@ wake_monster(int y, int x)
 		    fuse(unconfuse, 0, spread(HUHDURATION), AFTER);
 		player.t_flags |= ISHUH;
 		mname = set_mname(tp);
-        msg("Toı kaqcoe %s súq cà bîao súq da!", conjugate(mname, 2));
+        msg("Toı kaqcoe %s súq câ, ꝡä bıao súq da!", conjugate(mname, 2));
 	    }
 	}
     }

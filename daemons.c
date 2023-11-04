@@ -115,7 +115,7 @@ sight()
 	player.t_flags &= ~ISBLIND;
 	if (!(proom->r_flags & ISGONE))
 	    enter_room(&hero);
-	msg(choose_str("Obe!  Rıu ruajua tu raı da.",
+	msg(choose_str("Obe!  Rıu ruajua tú raı da.",
 		       "Rıu deq kaqgaı súq da."));
     }
 }
@@ -128,7 +128,7 @@ void
 nohaste()
 {
     player.t_flags &= ~ISHASTE;
-    msg("Gaı súq dîa deq suaı súq da.");
+    msg("Gaı súq, ꝡä dıa deq suaı súq da.");
 }
 
 /*
@@ -153,7 +153,7 @@ stomach()
 	no_command += rnd(8) + 4;
 	hungry_state = 3;
 	if (!terse)
-	    addmsg("Cabıaq chûqkuaı súq cy rûe súqbo tuaı da.  ");
+	    addmsg("Chuqkuaı súq câbıaq, ꝡä rue túaı suqbo da.  ");
 	msg("Sho sısıa súq da.");
     }
     else
@@ -164,20 +164,20 @@ stomach()
 	if (food_left < MORETIME && oldfood >= MORETIME)
 	{
 	    hungry_state = 2;
-	    msg("Chufaq ceo tuaırue súq da.");
+	    msg("Chum ceo tuaırue súq da.");
 	}
 	else if (food_left < 2 * MORETIME && oldfood >= 2 * MORETIME)
 	{
 	    hungry_state = 1;
-	    msg("Chufaq ceo chuqkuaı súq da.");
+	    msg("Chum ceo chuqkuaı súq da.");
 	}
     }
-    if (hungry_state != orig_hungry) { 
-        player.t_flags &= ~ISRUN; 
-        running = FALSE; 
-        to_death = FALSE; 
-        count = 0; 
-    } 
+    if (hungry_state != orig_hungry) {
+        player.t_flags &= ~ISRUN;
+        running = FALSE;
+        to_death = FALSE;
+        count = 0;
+    }
 }
 
 /*
@@ -225,7 +225,7 @@ come_down()
 	    standend();
 	}
     }
-    msg("Rıu JAQ foıca tu kaq da.");
+    msg("Rıu *jaqbeı* foıca tú kaqge da.");
 }
 
 /*

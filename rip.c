@@ -31,7 +31,7 @@ static char *rip[] = {
 "                  /                  \\\n",
 "                  |                  |\n",
 "                  |                  |\n",
-"                  |    muaqtua ku    |\n",
+"                  |    muaqtua kú    |\n",
 "                  |                  |\n",
 "                  |      hóa da      |\n",
 "                 *|     *  *  *      | *\n",
@@ -61,7 +61,7 @@ score(int amount, int flags, char monst)
 	"te muaqtua",
 	"shaı luaq",
 	"muo soıtaı",
-	"te muaqtua rào hêaq neqmy"
+	"te muaqtua hêaq néqraı"
     };
 
     start_score();
@@ -72,7 +72,7 @@ score(int amount, int flags, char monst)
 #endif
         )
     {
-	mvaddstr(LINES - 1, 0 , "[Hupa súq níqgıucıoq shou]");
+	mvaddstr(LINES - 1, 0 , "[Dem súq níqgıucıoq doa]");
         refresh();
         wgetnstr(stdscr,prbuf,80);
  	endwin();
@@ -166,11 +166,11 @@ score(int amount, int flags, char monst)
 	if (scp->sc_score) {
 	    if (sc2 == scp)
             md_raw_standout();
-	    printf("%2d %6d %s: %s tì ke %dko", (int) (scp - top_ten + 1),
+	    printf("%2d %6d %s: %s tî ké %dko", (int) (scp - top_ten + 1),
 		scp->sc_score, scp->sc_name, reason[scp->sc_flags],
 		scp->sc_level);
 	    if (scp->sc_flags == 0 || scp->sc_flags == 3)
-		printf(" lũ toı sa %s", killname((char) scp->sc_monster, TRUE));
+		printf(" êcı sá %s", killname((char) scp->sc_monster, TRUE));
 #ifdef MASTER
 	    if (prflags == 1)
 	    {
@@ -242,8 +242,8 @@ death(char monst)
 	mvprintw(LINES - 2, 0, "Muaqtua ");
 	killer = killname(monst, FALSE);
 	if (monst != 's' && monst != 'h')
-	    printw("sa ");
-	printw("%s hó da (ju %d éloahea da)", killer, purse);
+	    printw("sá ");
+	printw("%s hó da (kïo %d éloahea kı)", killer, purse);
     }
     else
     {
@@ -268,7 +268,7 @@ death(char monst)
     move(LINES - 1, 0);
     refresh();
     score(purse, amulet ? 3 : 0, monst);
-    printf("[Hupa súq níqgıucıoq shou]");
+    printf("[Dem súq níqgıucıoq doa]");
     fflush(stdout);
     (void) fgets(prbuf,10,stdin);
     my_exit(0);
@@ -309,16 +309,16 @@ total_winner()
     addstr("                                                       @       \n");
     addstr("                                                       @       \n");
     addstr("                                                               \n");
-    addstr("     Jaga, la taı súq hîefa ja ke Neqmy búı jòı mîefea ja!     \n");
+    addstr("        Jaga, ꝡa taı hıefa súq ké Neqraı búı mîefea da!        \n");
     standend();
-    addstr("\nLuı sha meaga súq tuq leısuoı lüı mıefea choaqfa hóa ke Doqjoq da.\n");
-    addstr("Saofa súq súqbo buedoaq na ru teqdoa súq sa tuq suqbo bomy da.\n");
-    addstr("Meashoe pó baq Soıche ga Gaqfuaı súq źe da.\n");
-    mvaddstr(LINES - 1, 0, "--Hupa súq shéalaıcıoq shou--");
+    addstr("\nLuı sha meaga súq túq leısuoı, ꝡë luı mıefea choaqfa hóa ké Doqjoq da.\n");
+    addstr("Saofa súq búedoaq suqbo, rú teqdo súq sá túq boraı suqbo da.\n");
+    addstr("Meashoe mí Gaqfuaı Bẹsoıche súq áq da.\n");
+    mvaddstr(LINES - 1, 0, "--Dem súq shéalaıcıoq doa--");
     refresh();
     wait_for(' ');
     clear();
-    mvaddstr(0, 0, "   Worth  Item\n");
+    mvaddstr(0, 0, "   Mıaq   Boraı\n");
     oldpurse = purse;
     for (obj = pack; obj != NULL; obj = next(obj))
     {
@@ -380,7 +380,7 @@ total_winner()
 	printw("%c) %5d  %s\n", obj->o_packch, worth, inv_name(obj, FALSE));
 	purse += worth;
     }
-    printw("   %5d  hea eloa             ", oldpurse);
+    printw("   %5d  eloahea              ", oldpurse);
     refresh();
     score(purse, 2, ' ');
     my_exit(0);
@@ -400,8 +400,8 @@ killname(char monst, bool doart)
 	{'a',	"heruo",		TRUE},
 	{'b',	"loe",		TRUE},
 	{'d',	"jıeqbeaq",		TRUE},
-	{'h',	"tûaıkoa",		FALSE},
-	{'s',	"chûqcıa",		FALSE},
+	{'h',	"ẹtuaıkoa",		FALSE},
+	{'s',	"ẹchuqcıa",		FALSE},
 	{'\0'}
     };
 
@@ -423,7 +423,7 @@ killname(char monst, bool doart)
 	    }
     }
     if (doart && article)
-	sprintf(prbuf, "sa ");
+	sprintf(prbuf, "sá ");
     else
 	prbuf[0] = '\0';
     strcat(prbuf, sp);

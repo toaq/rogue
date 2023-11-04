@@ -146,7 +146,7 @@ fall(THING *obj, bool pr)
 	    endmsg();
 	    has_hit = FALSE;
 	}
-	msg("Jıqshıy ke %s jòı shûa máq déaq da.",
+	msg("Jıqshıao ké %s jôı, ꝡä shua máq déaq da.",
 	    weap_info[obj->o_which].oi_name);
     }
     discard(obj);
@@ -244,7 +244,7 @@ bad:
 
     if (obj->o_type == ARMOR)
     {
-	msg("Bu kıu jıaı baq leoqfuq da.");
+	msg("Bu kıu jıaı báq leoqfuq da.");
 	goto bad;
     }
     if (is_current(obj))

@@ -292,7 +292,7 @@ runto(coord *runner)
      */
 #ifdef MASTER
     if ((tp = moat(runner->y, runner->x)) == NULL)
-	msg("runto: tı sıa (%d,%d)", runner->y, runner->x);
+	msg("runto: tı sía (%d,%d)", runner->y, runner->x);
 #else
     tp = moat(runner->y, runner->x);
 #endif
@@ -335,7 +335,7 @@ chase(THING *tp, coord *ee)
 	ch_ret = *rndmove(tp);
 	curdist = dist_cp(&ch_ret, ee);
 	/*
-	 * Small chance that it will become un-confused 
+	 * Small chance that it will become un-confused
 	 */
 	if (rnd(20) == 0)
 	    tp->t_flags &= ~ISHUH;
@@ -437,7 +437,7 @@ roomin(coord *cp)
 	 && cp->y <= rp->r_pos.y + rp->r_max.y && rp->r_pos.y <= cp->y)
 	    return rp;
 
-    msg("tı há sa jua (%d, %d)", unc(*cp));
+    msg("tı há sá jua (%d, %d)", unc(*cp));
 #ifdef MASTER
     abort();
     return NULL;

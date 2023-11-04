@@ -46,7 +46,7 @@ add_pack(THING *obj, bool silent)
 	    mvaddch(hero.y, hero.x, floor_ch());
 	    chat(hero.y, hero.x) = (proom->r_flags & ISGONE) ? PASSAGE : FLOOR;
 	    discard(obj);
-	    msg("Puosho ke majıpeq bòq hêaqsho súq máq da.");
+	    msg("Puosho ké majıpeq bôq, ꝡä heaqsho súq máq da.");
 	    return;
 	}
 
@@ -165,7 +165,7 @@ pack_room(bool from_floor, THING *obj)
 {
     if (++inpack > MAXPACK)
     {
-	msg("Boq heqmuo súqbo cea da.");
+	msg("Heqmuo céa suqbo haobôq da.");
 	if (from_floor)
 	    move_msg(obj);
 	inpack = MAXPACK;
@@ -267,8 +267,8 @@ inventory(THING *list, int type)
     }
     if (n_objs == 0)
     {
-	msg(type == 0 ? "Heaq súq sıa da." :
-			"Heaq súq sıa tıao da.");
+	msg(type == 0 ? "Heaq súq sía da." :
+			"Heaq súq sía tıao da.");
 	return FALSE;
     }
     end_line();
@@ -304,13 +304,13 @@ pick_up(char ch)
 		break;
 	    default:
 #ifdef MASTER
-		debug("Hıa '%s' moq???", unctrl(ch));
+		debug("Hıa '%s' móq???", unctrl(ch));
 #endif
 	    case ARMOR:
 	    case POTION:
 	    case FOOD:
 	    case WEAPON:
-	    case SCROLL:	
+	    case SCROLL:
 	    case AMULET:
 	    case RING:
 	    case STICK:
@@ -327,9 +327,7 @@ pick_up(char ch)
 void
 move_msg(THING *obj)
 {
-    if (!terse)
-	addmsg("you ");
-    msg("Tı ní %s da.", inv_name(obj, TRUE));
+    msg("Tı %s ní da.", inv_name(obj, TRUE));
 }
 
 /*
@@ -344,12 +342,12 @@ picky_inven()
     char mch;
 
     if (pack == NULL)
-	msg("Chufaq heaq súq sıa raı da.");
+	msg("Chum heaq súq sía raı da.");
     else if (next(pack) == NULL)
 	msg("a) %s", inv_name(pack, FALSE));
     else
     {
-	msg("Shaotaq sı súq hı heaqmu moq? ");
+	msg("Shao sı súq hí bọheaq móq? ");
 	mpos = 0;
 	if ((mch = readchar()) == ESCAPE)
 	{
@@ -362,7 +360,7 @@ picky_inven()
 		msg("%c) %s", mch, inv_name(obj, FALSE));
 		return;
 	    }
-	msg("Laı '%s' sıa heaqmu da.", unctrl(mch));
+	msg("Laı '%s' sía bọheaq da.", unctrl(mch));
     }
 }
 
@@ -377,12 +375,12 @@ get_item(char *purpose, int type)
     char ch;
 
     if (pack == NULL)
-	msg("Heaq súq sıa raı da.");
+	msg("Heaq súq sía raı da.");
     else if (again)
 	if (last_pick)
 	    return last_pick;
 	else
-	    msg("Achoqte da.");
+	    msg("Achoqte máq da.");
     else
     {
 	for (;;)
@@ -390,7 +388,7 @@ get_item(char *purpose, int type)
 	    if (!terse)
 	    addmsg("Taoshao ");
 	    addmsg(purpose);
-	    msg(" súq hı raı moq? (* = mekao): ");
+	    msg(" súq hí raı móq? (* = mekao): ");
 	    ch = readchar();
 	    mpos = 0;
 	    /*
@@ -419,10 +417,10 @@ get_item(char *purpose, int type)
 		    break;
 	    if (obj == NULL)
 	    {
-		msg("Jıq sıa mı '%s' da",unctrl(ch));
+		msg("Jıq sía mı '%s' da",unctrl(ch));
 		continue;
 	    }
-	    else 
+	    else
 		return obj;
 	}
     }
@@ -442,7 +440,7 @@ money(int value)
     chat(hero.y, hero.x) = (proom->r_flags & ISGONE) ? PASSAGE : FLOOR;
     if (value > 0)
     {
-	msg("Heaqshó súq sa %d hea eloa da.", value);
+	msg("Heaqsho súq sá eloahea %d da.", value);
     }
 }
 

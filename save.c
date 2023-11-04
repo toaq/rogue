@@ -47,7 +47,7 @@ over:
     {
 	for (;;)
 	{
-	    msg("Kaı jí lúaqchudao %s shôu? ", file_name);
+	    msg("Kaı jí lúaqchudao %s dóa? ", file_name);
 	    c = readchar();
 	    mpos = 0;
 	    if (c == ESCAPE)
@@ -58,7 +58,7 @@ over:
 	    else if (c == 'z' || c == 'Z' || c == 'n' || c == 'N')
 		break;
 	    else
-		msg("Koe súq shú N (nho) rı shú Z (zı) shou.");
+		msg("Koe súq shú N (nho) rí shú Z (zı) doa.");
 	}
 	if (c == 'n' || c == 'N')
 	{
@@ -72,7 +72,7 @@ over:
     do
     {
 	mpos = 0;
-	msg("Chua hı lúaqchukao moq? ");
+	msg("Chua hí lúaqchukao móq? ");
 	buf[0] = '\0';
 	if (get_str(buf, stdscr) == QUIT)
 	{
@@ -89,7 +89,7 @@ gotfile:
 	{
 	    for (;;)
 	    {
-		msg("Chua ní sa jıqhaı kao da. Ma shao súq nîqkaı moq?");
+		msg("Chua ní sá kao jıqhaı da. Ma aojaı súq, ꝡä hạonıqkaı jí?");
 		mpos = 0;
 		if ((c = readchar()) == ESCAPE)
 		    goto quit_it;
@@ -98,9 +98,9 @@ gotfile:
 		else if (c == 'z' || c == 'Z')
 		    goto over;
 		else
-		    msg("Koe súq sa shú [N]ho roı shú [Z]ı ba.");
+		    msg("Koe súq shú [N]ho rí shú [Z]ı ba.");
 	    }
-	    msg("Kaochua: shú %s", buf);
+	    msg("Kaochua: kú shú %s", buf);
 	    md_unlink(file_name);
 	}
 	strcpy(file_name, buf);
@@ -140,7 +140,7 @@ void
 save_file(FILE *savef)
 {
     char buf[80];
-    mvcur(0, COLS - 1, LINES - 1, 0); 
+    mvcur(0, COLS - 1, LINES - 1, 0);
     putchar('\n');
     endwin();
     resetltchars();
@@ -186,7 +186,7 @@ restore(char *file, char **envp)
     encread(buf, (unsigned) strlen(version) + 1, inf);
     if (strcmp(buf, version) != 0)
     {
-	printf("Kuaq sheo ka, duı geo ní luaqchukao dâ.\n");
+	printf("Kushe, duı geo ní luaqchukao dâ.\n");
 	return FALSE;
     }
     encread(buf,80,inf);
@@ -199,15 +199,15 @@ restore(char *file, char **envp)
     {
         endwin();
         // ntf("Sorry, original game was played on a screen with %d lines.\n",lines);
-        printf("Oaı, sao pó ní luaqchukao ga jıoqchuao nhè sa %d toagıu da.\n",lines);
-        printf("Naı sheaqsao súqbo nhè sa %d bü bıaq pùoq rîu luaq da.\n",LINES);
+        printf("Oaı, sao jíoqchuao po ní luaqchukao nhê sá toagıu %d da.\n",lines);
+        printf("Naı sheaqsao súqbo nhê sá %d bôq, ꝡä rıu luaq úmo da.\n",LINES);
         return(FALSE);
     }
     if (cols > COLS)
     {
         endwin();
-        printf("Oaı, nea pó ní luaqchukao ga jıoqchuao nhè sa %d nhuosheaq da.\n",lines);
-        printf("Naı nea súqbo nhè sa %d bü bıaq pùoq rîu luaq da.\n",LINES);
+        printf("Oaı, nea jíoqchuao po ní luaqchukao nhê sá nhuosheaq %d da.\n",lines);
+        printf("Naı nea súqbo nhê sá %d bôq, ꝡä rıu luaq úmo da.\n",LINES);
         return(FALSE);
     }
 
@@ -226,7 +226,7 @@ restore(char *file, char **envp)
 #endif
         md_unlink_open_file(file, inf) < 0)
     {
-	printf("Buaq jıqnua dao da\n");
+	printf("Buaq jıqnua jí báq dao da\n");
 	return FALSE;
     }
     mpos = 0;
@@ -244,7 +244,7 @@ restore(char *file, char **envp)
 	if (sbuf2.st_nlink != 1 || syml)
 	{
 	    endwin();
-	    printf("\nBuaq rıu lûaq sìy káo da\n");
+	    printf("\nBuaq jí pó káo da\n");
 	    return FALSE;
 	}
 
@@ -347,7 +347,7 @@ rd_score(SCORE *top_ten)
 	if (scoreboard == NULL)
 		return;
 
-	rewind(scoreboard); 
+	rewind(scoreboard);
 
 	for(i = 0; i < numscores; i++)
     {
@@ -359,7 +359,7 @@ rd_score(SCORE *top_ten)
             &top_ten[i].sc_level, &top_ten[i].sc_time);
     }
 
-	rewind(scoreboard); 
+	rewind(scoreboard);
 }
 
 /*
@@ -387,5 +387,5 @@ wr_score(SCORE *top_ten)
           encwrite(scoreline,100,scoreboard);
     }
 
-	rewind(scoreboard); 
+	rewind(scoreboard);
 }

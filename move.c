@@ -48,7 +48,7 @@ do_move(int dy, int dx)
     if (no_move)
     {
 	no_move--;
-	msg("Hoaı chufaq jıaı púejıaıchuo súq da.");
+	msg("Hoaı jıaı púejıaıchuo súq da.");
 	return;
     }
     /*
@@ -98,7 +98,7 @@ over:
     }
     else if (on(player, ISHELD) && ch != 'F')
     {
-	msg("Chufaq jıaı sa súq da.");
+	msg("Chum jıaı sá súq da.");
 	return;
     }
     switch (ch)
@@ -279,40 +279,40 @@ be_trapped(coord *tc)
 	case T_DOOR:
 	    level++;
 	    new_level();
-	    msg("Nıeshua súq sa deaqkıao da!");
+	    msg("Nıeshua súq sá deaqkıao da!");
 	when T_BEAR:
 	    no_move += BEARTIME;
-	    msg("Jıaı sa puejıaıchuo súq da.");
+	    msg("Jıaı sá puejıaıchuo súq da.");
         when T_MYST:
             switch(rnd(11))
             {
-                case 0: msg("Eka tısha súq sa heojıaq da!");
+                case 0: msg("Eka tısha súq sá heojıaq da!");
                 when 1: msg("Eka sho kaqdu %s níjuı gıo da.", rainbow[rnd(cNCOLORS)]);
-                when 2: msg("Du chôıhıao sa nuı súqbo boa da.");
-                when 3: msg("Rıe sa reomıa puı gıosoaı súq da, rubıe shıy tá da.");
-                when 4: msg("Peo sa %s gıo súqbo kaqhua da.", rainbow[rnd(cNCOLORS)]);
-                when 5: msg("Buaq fuo sa majısoaı súqbo tuaı da!");
-                when 6: msg("Deduy sa %s zıazıa nèo súqbo fuq da!", rainbow[rnd(cNCOLORS)]);
-                when 7: msg("Eka daqnuı jaq pıekuaı súq da.");
-                when 8: msg("Daqnuı gâı súq sûaı pusho baq daq da.");
-                when 9: msg("Gâı súq mêoq pusho baq daq da.");
-                when 10: msg("Sho %s súqbo cea da!", rainbow[rnd(cNCOLORS)]);
+                when 2: msg("Du choıhıao sá nuı bóa suqbo da.");
+                when 3: msg("Rıe sá gıosoaı puı reomıa súq, rúbıe shıao máq da.");
+                when 4: msg("Peo sá gıo %s káqhua suqbo da.", rainbow[rnd(cNCOLORS)]);
+                when 5: msg("Buaq fuo sá majısoaı túaı suqbo da!");
+                when 6: msg("Marao sá zıazıa %s nêo fúq suqbo da!", rainbow[rnd(cNCOLORS)]);
+                when 7: msg("Eka jaq pıekuaı súq jîm da.");
+                when 8: msg("Gaı jîm súq, ꝡä pusho sûaı báq daq da.");
+                when 9: msg("Gaı súq ꝡä pusho mêoq báq daq da.");
+                when 10: msg("Sho %s céa suqbo da!", rainbow[rnd(cNCOLORS)]);
             }
 	when T_SLEEP:
 	    no_command += SLEEPTIME;
 	    player.t_flags &= ~ISRUN;
-	    msg("Rıe sa jua nıapuao súq da, ru nuosho súq da.");
+	    msg("Rıe sá nıapuao jua súq, rú nuosho súq da.");
 	when T_ARROW:
 	    if (swing(pstats.s_lvl - 1, pstats.s_arm, 1))
 	    {
 		pstats.s_hpt -= roll(1, 6);
 		if (pstats.s_hpt <= 0)
 		{
-		    msg("Muaqtua sa heruo súq da.");
+		    msg("Muaqtua sá heruo súq da.");
 		    death('a');
 		}
 		else
-		    msg("Ahı! Doka sa heruo súq da.");
+		    msg("Ahı! Doka sá heruo súq da.");
 	    }
 	    else
 	    {
@@ -321,7 +321,7 @@ be_trapped(coord *tc)
 		arrow->o_count = 1;
 		arrow->o_pos = hero;
 		fall(arrow, FALSE);
-		msg("Buaq fuo sa rıoduy heruo súq da.");
+		msg("Buaq fuo sá heruo suaı súq da.");
 	    }
 	when T_TELEP:
 	    /*
@@ -332,21 +332,21 @@ be_trapped(coord *tc)
 	    mvaddch(tc->y, tc->x, TRAP);
 	when T_DART:
 	    if (!swing(pstats.s_lvl+1, pstats.s_arm, 1))
-		msg("Buaq fuo sa nuı jıeqbeaq súq da, ru shıy máq da.");
+		msg("Buaq fuo sá jıeqbeaq nuı súq, rú shıao máq da.");
 	    else
 	    {
 		pstats.s_hpt -= roll(1, 4);
 		if (pstats.s_hpt <= 0)
 		{
-		    msg("Muaqtua sa jıeqbeaq súq da.");
+		    msg("Muaqtua sá jıeqbeaq súq da.");
 		    death('d');
 		}
 		if (!ISWEARING(R_SUSTSTR) && !save(VS_POISON))
 		    chg_str(-1);
-		msg("Doka sa jıeqbeaq geı hıaosaıa súq da!");
+		msg("Doka sá jıeqbeaq bẹhıaosaıa súq da!");
 	    }
 	when T_RUST:
-	    msg("Shua sa hıejeoqny nao súq da!");
+	    msg("Shua sá nao nhẹhıejeoq súq da!");
 	    rust_armor(cur_armor);
     }
     flush_type();
@@ -412,11 +412,11 @@ rust_armor(THING *arm)
     if ((arm->o_flags & ISPROT) || ISWEARING(R_SUSTARM))
     {
 	if (!to_death)
-	    msg("Eka shıy gúpuloha da.");
+	    msg("Eka shıao gúpuloha da.");
     }
     else
     {
 	arm->o_arm++;
-	msg("Oaı, dıa doe súqbo leoqfuq da!");
+	msg("Oaı, dıa doe léoqfuq suqbo da!");
     }
 }

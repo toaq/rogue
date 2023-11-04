@@ -63,7 +63,7 @@ do_zap()
     }
     if (obj->o_charges == 0)
     {
-	msg("Faq sıa raı da.");
+	msg("Faq sía raı da.");
 	return;
     }
     switch (obj->o_which)
@@ -74,7 +74,7 @@ do_zap()
 	     */
 	    ws_info[WS_LIGHT].oi_know = TRUE;
 	    if (proom->r_flags & ISGONE)
-		msg("Gıozıa rubıe rıu moy kíaogıu da.");
+		msg("Gıozıa kíaogıu, rúbıe rıu moku máq da.");
 	    else
 	    {
 		proom->r_flags &= ~ISDARK;
@@ -82,7 +82,7 @@ do_zap()
 		 * Light the room and put the player back up
 		 */
 		enter_room(&hero);
-		msg("Sho tı sa %s gıo kúe da.", pick_color("mıo"));
+		msg("Sho tı sá gıo %s kúe da.", pick_color("mıo"));
 	    }
 	when WS_DRAIN:
 	    /*
@@ -92,7 +92,7 @@ do_zap()
 	     */
 	    if (pstats.s_hpt < 2)
 	    {
-		msg("Duı rue súq bòq chôq súq kóu da.");
+		msg("Duı rue súq bôq, ꝡä choq súq ní da.");
 		return;
 	    }
 	    else
@@ -182,7 +182,7 @@ do_zap()
 	    if ((tp = moat(bolt.o_pos.y, bolt.o_pos.x)) != NULL
 		&& !save_throw(VS_MAGIC, tp))
 		    hit_monster(unc(bolt.o_pos), &bolt);
-	    else msg("Puaoshıy májısoaı da.");
+	    else msg("Puaoshıao májısoaı da.");
 	when WS_HASTE_M:
 	case WS_SLOW_M:
 	    y = hero.y;
@@ -358,7 +358,7 @@ def:
 			used = TRUE;
 			if (tp->t_type == 'D' && strcmp(name, "flame") == 0)
 			{
-			    msg("Juka lóe dáraqgoq da.");
+			    msg("Juka lóe dáragoq da.");
 			}
 			else
 			    hit_monster(unc(pos), &bolt);

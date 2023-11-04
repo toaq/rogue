@@ -26,7 +26,7 @@ wear()
 	return;
     if (cur_armor != NULL)
     {
-	msg("Haı chufaq geı súq sa da.");
+	msg("Haı geı súq sá da.");
 	after = FALSE;
 	return;
     }
@@ -54,7 +54,7 @@ take_off()
     if ((obj = cur_armor) == NULL)
     {
 	after = FALSE;
-    msg("Chufaq geı súq sıa da.");
+    msg("Chum geı súq sía da.");
 	return;
     }
     if (!dropcheck(cur_armor))

@@ -82,7 +82,7 @@ look(bool wakeup)
 	    if (pch != DOOR && ch != DOOR)
 		if ((pfl & F_PASS) != (*fp & F_PASS))
 		    continue;
-	    if (((*fp & F_PASS) || ch == DOOR) && 
+	    if (((*fp & F_PASS) || ch == DOOR) &&
 		 ((pfl & F_PASS) || pch == DOOR))
 	    {
 		if (hero.x != x && hero.y != y &&
@@ -287,7 +287,7 @@ eat()
 	return;
     if (obj->o_type != FOOD)
     {
-	msg("Ifu, bıa súq ào chúq súq ní da!");
+	msg("Ifu, âo, ꝡä chuq súq ní, nä bıa súq da!");
 	return;
     }
     if (food_left < 0)
@@ -384,7 +384,7 @@ add_haste(bool potion)
 	no_command += rnd(8);
 	player.t_flags &= ~(ISRUN|ISHASTE);
 	extinguish(nohaste);
-	msg("Sho sısıa súq kùı dûı seakuaı súq da.");
+	msg("Sho sısıa súq kûı, ꝡä duı seakuaı súq da.");
 	return FALSE;
     }
     else
@@ -431,7 +431,7 @@ vowelstr(char *str)
     }
 }
 
-/* 
+/*
  * is_current:
  *	See if the object is one of the currently used items
  */
@@ -443,7 +443,7 @@ is_current(THING *obj)
     if (obj == cur_armor || obj == cur_weapon || obj == cur_ring[LEFT]
 	|| obj == cur_ring[RIGHT])
     {
-	msg("Haı chufaq choq súq ní da.");
+	msg("Haı choq súq ní da.");
 	return TRUE;
     }
     return FALSE;
@@ -469,7 +469,7 @@ get_dir()
     }
     else
     {
-	msg(prompt = "Fày hı feo? ");
+	msg(prompt = "Fâna hí feo? ");
 	do
 	{
 	    gotit = TRUE;
@@ -547,7 +547,7 @@ call_it(struct obj_info *info)
     }
     else if (!info->oi_guess)
     {
-	msg("Chuadoa súq ní hı moq? ");
+	msg("Chuado súq ní hí móq? ");
 	if (get_str(prbuf, stdscr) == NORM)
 	{
 	    if (info->oi_guess != NULL)

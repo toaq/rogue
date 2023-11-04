@@ -37,7 +37,7 @@ read_scroll()
 	return;
     if (obj->o_type != SCROLL)
     {
-	msg("Kaıte kóu sıa da.");
+	msg("Kaıte máq sía da.");
 	return;
     }
     /*
@@ -59,13 +59,13 @@ read_scroll()
 	     * Scroll of monster confusion.  Give him that power.
 	     */
 	    player.t_flags |= CANHUH;
-	    msg("Ceo gıozıa súqbo gumuq sa %s da.", pick_color("kıa"));
+	    msg("Ceo gıozıa gúmuq suqbo sá %s da.", pick_color("kıa"));
 	when S_ARMOR:
 	    if (cur_armor != NULL)
 	    {
 		cur_armor->o_arm--;
 		cur_armor->o_flags &= ~ISCURSED;
-		msg("Pıka gıozıa súqbo leoqfuq sa %s da.", pick_color("mıalareo"));
+		msg("Pıka gıozıa léoqfuq suqbo sá %s da.", pick_color("mıalareo"));
 	    }
 	when S_HOLD:
 	    /*
@@ -86,11 +86,11 @@ read_scroll()
 			    }
 	    if (ch)
 	    {
-		msg("Shaı duy ke ıoma rëı hóa súq da.");
+		msg("Shaı gıam ké ıoma reı sûq da.");
 		scr_info[S_HOLD].oi_know = TRUE;
 	    }
 	    else
-		msg("Moe súq lûı buaq ja sa da.");
+		msg("Moe súq, lä luı gom já sá da.");
 	when S_SLEEP:
 	    /*
 	     * Scroll which makes you fall asleep
@@ -128,7 +128,7 @@ read_scroll()
 			}
 		    }
 	    if (i == 0)
-		msg("Huogaı súq sa rue shoıse müıbo hóa jâq noı sa da.");
+		msg("Huogaı súq sá shoıse rue muıbo, ꝡâ jaq noılıe sá da.");
 	    else
 	    {
 		obj = new_item();
@@ -154,7 +154,7 @@ read_scroll()
 	     * Scroll of magic mapping.
 	     */
 	    scr_info[S_MAP].oi_know = TRUE;
-	    msg("Obe, sha kaıte ní peq sa guaqfuaq da.");
+	    msg("Obe, sha kaıte ní peq sá guaqfuaq da.");
 	    /*
 	     * take all the things we want to keep hidden out of the window
 	     */
@@ -234,10 +234,10 @@ def:
 	    if (ch)
 	    {
 		scr_info[S_FDET].oi_know = TRUE;
-			show_win("Uru súqbo shıqhua jòı shîqgaı súq tî baq haq hı da.--Sıe--");
+			show_win("Uru shíqhua suqbo jôı, ꝡä shıqgaı súq, ꝡä tı báq haq hí da.--Sıe--");
 	    }
 	    else
-		msg("Uru súqbo shıqhua da.");
+		msg("Uru shíqhua suqbo da.");
 	when S_TELEP:
 	    /*
 	     * Scroll of teleportation:
@@ -251,7 +251,7 @@ def:
 	    }
 	when S_ENCH:
 	    if (cur_weapon == NULL || cur_weapon->o_type != WEAPON)
-		msg("Moe súq lûı buaq ja sa da.");
+		msg("Moe súq, ꝡä luı gom já sá da.");
 	    else
 	    {
 		cur_weapon->o_flags &= ~ISCURSED;
@@ -259,7 +259,7 @@ def:
 		    cur_weapon->o_hplus++;
 		else
 		    cur_weapon->o_dplus++;
-		msg("Pıka gıozıa súqbo %s sa %s da.",
+		msg("Pıka gıozıa ké %s suqbo sá %s da.",
 		    weap_info[cur_weapon->o_which].oi_name, pick_color("mıo"));
 	    }
 	when S_SCARE:
@@ -267,28 +267,28 @@ def:
 	     * Reading it is a mistake and produces laughter at her
 	     * poor boo boo.
 	     */
-	    msg("Huogaı súq hîaı tĩjao sa shaohuı da.");
+	    msg("Huogaı súq, ꝡä hıaı tîjao sá shaohuı da.");
 	when S_REMOVE:
 	    uncurse(cur_armor);
 	    uncurse(cur_weapon);
 	    uncurse(cur_ring[LEFT]);
 	    uncurse(cur_ring[RIGHT]);
-	    msg("Moe súq kîaı sa paıruo súq da.");
+	    msg("Moe súq, lä kıaı sá paıruo já da.");
 	when S_AGGR:
 	    /*
 	     * This scroll aggravates all the monsters on the current
 	     * level and sets them running towards the hero
 	     */
 	    aggravate();
-	    msg("Huogaı súq sa beocıa laqgea.");
+	    msg("Huogaı súq sá laqgea beocıa.");
 	when S_PROTECT:
 	    if (cur_armor != NULL)
 	    {
 		cur_armor->o_flags |= ISPROT;
-		msg("Tıe sa zıazıa %s leoqboe súqbo leoqfuq da.", pick_color("eloareo"));
+		msg("Tıe sá leoqboe zıazıa %s léoqfuq suqbo da.", pick_color("eloareo"));
 	    }
 	    else
-		msg("Moe súq lûı buaq ja sa da.");
+		msg("Moe súq, lä luı gom já sá da.");
 #ifdef MASTER
 	otherwise:
 	    msg("Jua ní majıpeq da.");

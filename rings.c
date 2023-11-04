@@ -32,7 +32,7 @@ ring_on()
 	return;
     if (obj->o_type != RING)
     {
-	msg("Bu cheıbıu ní da.");
+	msg("Bu cheılıem ní da.");
 	return;
     }
 
@@ -53,7 +53,7 @@ ring_on()
 	ring = RIGHT;
     else
     {
-	msg("Bõq bı geı tushı suqbo muq sa cheıbıu da.");
+	msg("Geı tú muq suqbo sá cheılıem haobôq da.");
 	return;
     }
     cur_ring[ring] = obj;
@@ -90,7 +90,7 @@ ring_off()
 
     if (cur_ring[LEFT] == NULL && cur_ring[RIGHT] == NULL)
     {
-	msg("Geı súq sıa cheıbıu da.");
+	msg("Geı súq sía cheılıem da.");
 	return;
     }
     else if (cur_ring[LEFT] == NULL)
@@ -104,7 +104,7 @@ ring_off()
     obj = cur_ring[ring];
     if (obj == NULL)
     {
-	msg("Geı súq sıa nu cheıbıu da.");
+	msg("Geı súq sía cheılıem nu da.");
 	return;
     }
     if (dropcheck(obj))
@@ -122,7 +122,7 @@ gethand()
 
     for (;;)
     {
-	msg("Lıomuq rı sıaqmuq moq?");
+	msg("Líomuq rí síaqmuq móq?");
 	if ((c = readchar()) == ESCAPE)
 	    return -1;
 	mpos = 0;
@@ -130,7 +130,7 @@ gethand()
 	    return LEFT;
 	else if (c == 's' || c == 'S')
 	    return RIGHT;
-	msg("Koe súq shú L ro shú S shou.");
+	msg("Koe súq shú L ró shú S doa.");
     }
 }
 

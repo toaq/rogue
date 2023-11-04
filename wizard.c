@@ -29,7 +29,7 @@ whatis(bool insist, int type)
 
     if (pack == NULL)
     {
-	msg("Kıu gaımuo sıa hëaq súq hóa da.");
+	msg("Kıu gaımuo sía, ꝡë heaq súq hóa da.");
 	return;
     }
 
@@ -41,10 +41,10 @@ whatis(bool insist, int type)
 	    if (n_objs == 0)
 		return;
 	    else if (obj == NULL)
-		msg("Koe súq sa shı shou.");
+		msg("Koe súq sá shı doa.");
 	    else if (type && obj->o_type != type &&
 	       !(type == R_OR_S && (obj->o_type == RING || obj->o_type == STICK)) )
-		    msg("Kou súq sa %s shou.", type_name(type));
+		    msg("Kou súq sá %s doa.", type_name(type));
 	    else
 		break;
 	}
@@ -101,11 +101,11 @@ type_name(int type)
 {
     struct h_list *hp;
     static struct h_list tlist[] = {
-	{POTION, "majınao",	FALSE},
+	{POTION, "nuımchaı",	FALSE},
 	{SCROLL, "majıpeq",	FALSE},
 	{FOOD,	 "haq",		FALSE},
 	{R_OR_S, "majıchuo",	FALSE},
-	{RING,	 "cheıbıu",	FALSE},
+	{RING,	 "cheılıem",	FALSE},
 	{STICK,	 "majıbeaq",	FALSE},
 	{WEAPON, "hıaochuo",	FALSE},
 	{ARMOR,	 "leoqfuq",	FALSE},
@@ -134,7 +134,7 @@ create_obj()
     msg("rıoq: ");
     obj->o_type = readchar();
     mpos = 0;
-    msg("shao bo súq hı %c moq? (0-f)", obj->o_type);
+    msg("shao bo súq hí %c? (0-f)", obj->o_type);
     obj->o_which = (isdigit((ch = readchar())) ? ch - '0' : ch - 'a' + 10);
     obj->o_group = 0;
     obj->o_count = 1;
@@ -241,7 +241,7 @@ passwd()
     char *sp, c;
     static char buf[MAXSTR];
 
-    msg("po mí wizard ga shuıtoa:");
+    msg("shuıtoa pomı wizard:");
     mpos = 0;
     sp = buf;
     while ((c = readchar()) != '\n' && c != '\r' && c != ESCAPE)

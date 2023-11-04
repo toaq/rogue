@@ -97,7 +97,7 @@ char *rainbow[] = {
     "loekıa",
     "lue",
     "mıo",
-    "moykuo",
+    "puımkuo",
     "naraq",
     "noaıbao",
     "reomıa",
@@ -142,26 +142,26 @@ STONE stones[] = {
     { "nueqkıapıo",	 40},
     { "choıpıo",	300},
     { "rıqpıo",	300},
-    { "gerymanıumy",	225},
+    { "gemanıum",	225},
     { "ruameıpıo",	  5},
     { "zaqlopıo",		 50},
     { "ıqse",		150},
-    { "kırıpytonaıty",	300},
+    { "kırıpıtonaıtı",	300},
     { "lazulıpıo",	 50},
     { "mıaopıo",	 50},
     { "loeshıa",	 15},
     { "ceaqpıo",		 60},
     { "mırupıo",		200},
-    { "mıqly",		220},
+    { "naolıem",		220},
     { "magopıo",	 63},
     { "rubı",		350},
     { "safıra",	285},
     { "pıoloha",	200},
     { "katopıo",	 50},
-    { "topazy",		 60},
+    { "topaza",		 60},
     { "kuaopıo",	 70},
     { "toaqpıo",	300},
-    { "zırykoq",	 	 80},
+    { "zırıkoq",	 	 80},
 };
 
 #define NSTONES (sizeof stones / sizeof (STONE))
@@ -192,7 +192,7 @@ int cNWOOD = NWOOD;
 
 char *metal[] = {
     "lıumıala",
-    "berılysaı",
+    "berılıum",
     "kuoqsaı",
     "mesıq",
     "raqsu",
@@ -203,16 +203,16 @@ char *metal[] = {
     "tuoqloha",
     "maqnesıoq",
     "naoloha",
-    "nıkyloha",
+    "nıkela",
     "lıuloha",
     "palatına",
-    "zouku",
+    "zoku",
     "mıala",
     "sılıkoq",
     "tıqloha",
     "caıloha",
-    "tuqsyteq",
-    "zıqky",
+    "tuqsuteq",
+    "zıqkı",
 };
 
 #define NMETAL (sizeof metal / sizeof (char *))
@@ -251,7 +251,7 @@ init_colors()
 
 static char *gismu_mid[] = {"ct","cp","cf","ck","cm","cn","cl","cr","jd","jb","jv","jg","jm","jn","jl","jr","st","sp","sf","sk","sx","sm","sn","sl","sr","zd","zb","zv","zg","zm","zn","zl","zr","tc","ts","tp","tf","tk","tx","tm","tn","tl","tr","dj","dz","db","dv","dg","dm","dn","dl","dr","pc","ps","pt","pf","pk","px","pm","pn","pl","pr","bj","bz","bd","bv","bg","bm","bn","bl","br","fc","fs","ft","fp","fk","fx","fm","fn","fl","fr","vj","vz","vd","vb","vg","vm","vn","vl","vr","kc","ks","kt","kp","kf","km","kn","kl","kr","gj","gz","gd","gb","gv","gm","gn","gl","gr","xs","xt","xp","xf","xm","xn","xl","xr","mc","mj","ms","mt","md","mp","mb","mf","mv","mk","mg","mx","mn","ml","mr","nc","nj","ns","nz","nt","nd","np","nb","nf","nv","nk","ng","nx","nm","nl","nr","lc","lj","ls","lz","lt","ld","lp","lb","lf","lv","lk","lg","lx","lm","ln","lr","rc","rj","rs","rz","rt","rd","rp","rb","rf","rv","rk","rg","rx","rm","rn","rl"};
 static char *gismu_init[] = {"bl","br","cf","ck","cl","cm","cn","cp","cr","ct","dj","dr","dz","fl","fr","gl","gr","jb","jd","jg","jm","jv","kl","kr","ml","mr","pl","pr","sf","sk","sl","sm","sn","sp","sr","st","tc","tr","ts","vl","vr","xl","xr","zb","zd","zg","zm","zv"};
-#define rndstr(X) X[rnd((sizeof X) / (sizeof (char*)))] 
+#define rndstr(X) X[rnd((sizeof X) / (sizeof (char*)))]
 #define JBO_V "aeiou"[rnd(5)]
 #define JBO_C "bcdfgjklmnprstvxz"[rnd(17)]
 char *lojban_name() {
@@ -429,9 +429,9 @@ init_materials()
 
 #ifdef MASTER
 # define	NT	NUMTHINGS, "raı"
-# define	MP	MAXPOTIONS, "majınao"
+# define	MP	MAXPOTIONS, "nuımchaı"
 # define	MS	MAXSCROLLS, "majıpeq"
-# define	MR	MAXRINGS, "cheıbıu"
+# define	MR	MAXRINGS, "cheılıem"
 # define	MWS	MAXSTICKS, "majıbeaq"
 # define	MW	MAXWEAPONS, "hıaochuo"
 # define	MA	MAXARMORS, "leoqfuq"
